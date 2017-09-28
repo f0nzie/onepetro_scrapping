@@ -174,9 +174,14 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCdEOi9Ecm9wYm94L1Ivd2ViX3NjcmFwaW5nL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5NzAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTgwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code>source('D:/Dropbox/R/web_scraping/R/url.R')
-my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCdEOi9Ecm9wYm94L1Ivd2ViX3NjcmFwaW5nL1IvdXJsLlInKVxuYGBgIn0= -->
+<pre class="r"><code>source('D:/Dropbox/R/web_scraping/R/url.R')</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bWwyXG4ifQ== -->
+<pre><code>Loading required package: xml2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5NzAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTgwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
+<pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
                           from_year = 1970, 
                           to_year   = 1980, 
                           how = &quot;all&quot;)</code></pre>
@@ -219,19 +224,13 @@ my_url &lt;- make_search_url(query = &quot;neural network&quot;,
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9IFwiYWxsXCIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmdldF9wYXBlcnNfY291bnQobXlfdXJsKVxuYGBgIn0= -->
 <pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          how = &quot;all&quot;)</code></pre>
+                          from_year = 1990, 
+                          to_year   = 2000, 
+                          how = &quot;all&quot;)
+get_papers_count(my_url)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiXFxcIm5ldXJhbCtuZXR3b3JrXFxcIlwiXG4ifQ== -->
-<pre><code>[1] &quot;\&quot;neural+network\&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
-<pre class="r"><code>get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUxMFxuIn0= -->
-<pre><code>[1] 510</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
 <div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnRDovRHJvcGJveC9SL3dlYl9zY3JhcGluZy9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTcwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk4MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KbXlfdXJsDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA0KDQpgYGB7cn0NCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTgwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk5MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KZ2V0X3BhcGVyc19jb3VudChteV91cmwpDQpgYGANCg0KYGBge3J9DQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA==</div>
