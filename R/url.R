@@ -214,7 +214,16 @@ onepetro_page_to_dataframe <- function(url) {
     df_titles  <- read_titles(webpage)
     df_sources <- read_sources(webpage)
     df_author  <- read_author(webpage)
-    cbind(df_titles, df_sources, df_author)
+    # print(dim(df_titles))
+    # print(dim(df_sources))
+    # print(dim(df_author))
+    if (all(dim(df_titles)[1]  == dim(df_sources)[1], 
+            dim(df_sources)[1] == dim(df_author)[1], 
+            dim(df_author)[1]  == dim(df_titles)[1]
+                                  ))
+        cbind(df_titles, df_sources, df_author)
+    else
+        stop("Dataframe sizes different")
 }
 
 

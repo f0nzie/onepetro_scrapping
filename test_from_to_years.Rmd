@@ -80,6 +80,6 @@ my_url <- make_search_url(query = "neural network",
                           dc_type = "journal-paper",
                           rows = 1000)
 
-# get_papers_count(my_url)
+get_papers_count(my_url)
 onepetro_page_to_dataframe(my_url)
 ```
