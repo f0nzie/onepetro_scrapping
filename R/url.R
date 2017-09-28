@@ -95,6 +95,7 @@ form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewe
                    rows = "rows=")
 
 
+
 make_search_url <- function(query = NULL, start = NULL, from_year = NULL, 
                             peer_reviewed = NULL, 
                             published_between = NULL, 
@@ -123,6 +124,7 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
             #query <- ifelse(how == "all", dQuote(query), query)
             query <- ifelse(how == "all", shQuote(query), query)
             # query <- ifelse(how == "all", paste0("'", query, "'"), query)
+            
             # print(query)
         }
     }
@@ -182,4 +184,75 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
     } 
     
     joined
+}
+
+
+
+read_titles <- function(webpage) {
+    
+    # title
+    # .result-link
+    
+    #Using CSS selectors to scrap the rankings section
+    title_data_html <- html_nodes(webpage, '.result-link')
+    
+    # Converting the ranking data to text
+    title_data <- html_text(title_data_html)
+    
+    # data pre-processing
+    title_data <- trimws(gsub("\n", "",title_data))
+    
+    
+    #Let's have a look at the rankings
+    title_data <- data.frame(title_data, stringsAsFactors = FALSE)
+    # write.csv(df, file = "3000-conf.csv")
+    return(title_data)
+}
+
+read_sources <- function(webpage) {
+    # year, paper id, institution, type, year
+    # .result-item-source
+    
+    #Using CSS selectors to scrap the rankings section
+    source_data_html <- html_nodes(webpage, '.result-item-source')
+    
+    #Converting the ranking data to text
+    source_data <- html_text(source_data_html)
+    
+    # pre-processing. split at \n
+    source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),'\n',fixed=TRUE)), 
+                              stringsAsFactors = FALSE)
+    # remove blank columns
+    source_data <- source_data[, 2:5]
+    # rename columns
+    names(source_data) <- c("paper_id", "source", "type", "year")
+    # remove dash from year
+    source_data$year <- gsub("-", "", source_data$year)
+    
+    # Let's have a look at the paper source data
+    source_data
+}
+
+read_author <- function(webpage) {
+    # author #1
+    #Using CSS selectors to scrap the rankings section
+    author1_data_html <- html_nodes(webpage, '.result-item-author:nth-child(1)')
+    
+    #Converting the ranking data to text
+    author1_data <- html_text(author1_data_html)
+    
+    # data pre-processing
+    author1_data <- trimws(gsub("\n", "", author1_data))
+    
+    #Let's have a look at the rankings
+    data.frame(author1_data, stringsAsFactors = FALSE)
+}
+
+
+onepetro_page_to_dataframe <- function(url) {
+    webpage <- read_html(url)
+    df_titles  <- read_titles(webpage)
+    df_sources <- read_sources(webpage)
+    df_author  <- read_author(webpage)
+    cbind(df_titles, df_sources, df_author)
 }
