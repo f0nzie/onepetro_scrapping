@@ -11,7 +11,7 @@ form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewe
                    to_year = "to_year=", 
                    start = "start=", 
                    rows = "rows=",
-                   dc_type = "dc_type")
+                   dc_type = "dc_type=")
 
 # Examples:
 # https://www.onepetro.org/search?q=%22data+science%22&peer_reviewed=&published_between=&from_year=&to_year=
@@ -136,7 +136,7 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
             if (s_url[[i]] == form_input[[i]] & i <= 6) {
                 joined <- paste(joined, s_url[[i]], sep = "&")
             } else  if (s_url[[i]] != form_input[[i]]) {
-                # cat(i, my_url[[i]], "\n")
+                cat(i, s_url[[i]], "\n")
                 joined <- paste(joined, s_url[[i]], sep = "&")
             }
         }
