@@ -232,6 +232,12 @@ onepetro_allpages_to_dataframe <- function(url) {
         num_pages <- papers_count / 1000
     }
     list(papers = papers_count, pages1000 = num_pages)
+    
+    for (page in seq_len(num_pages)) {
+        # webpage <- read_html(url)
+        
+    }
+    url
 }
 
 
