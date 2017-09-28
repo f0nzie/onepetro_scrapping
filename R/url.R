@@ -10,7 +10,8 @@ form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewe
                    from_year = "from_year=",
                    to_year = "to_year=", 
                    start = "start=", 
-                   rows = "rows=")
+                   rows = "rows=",
+                   dc_type = "dc_type")
 
 # Examples:
 # https://www.onepetro.org/search?q=%22data+science%22&peer_reviewed=&published_between=&from_year=&to_year=
@@ -45,6 +46,7 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
                             published_between = NULL, 
                             rows = NULL, 
                             to_year = NULL, 
+                            dc_type = NULL,
                             how = "any") {
     
     website <- "https://www.onepetro.org"
@@ -96,6 +98,18 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
         if (peer_reviewed) peer_reviewed = "on"
     }
     
+    # document type
+    if (!is.null(dc_type)) {
+        valid_options <- c("conference-paper", "journal-paper", "general")
+        # stop if it is not in the options
+        if (!dc_type %in% valid_options) {
+            msg <- sprintf("Option unknown. It must be one of [ %s ]", 
+                           paste(valid_options, collapse = ", "))
+            stop(msg)
+            # cat(valid_options, "\n")
+        }
+    }
+    
     s_search  <- paste(website, "search", sep = "/")
     
     # these strings will need to join with the ampersand & at the tail
@@ -106,11 +120,12 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
     s_to      <- paste0("to_year=", to_year)
     s_start   <- paste0("start=", start) 
     s_rows    <- paste0("rows=", rows)
+    s_type    <- paste0("dc_type=", dc_type)
     
     # url
     s_url <- list(websearch = s_search, query = s_query, peer = s_peer, 
                   published_between = s_publish, from_year = s_from, to_year = s_to,
-                  start = s_start, rows = s_rows
+                  start = s_start, rows = s_rows, dc_type = s_type
     )
     
     for (i in 1:length(s_url)) {
@@ -164,7 +179,8 @@ read_sources <- function(webpage) {
     source_data <- html_text(source_data_html)
     
     # pre-processing. split at \n
-    source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),'\n',fixed=TRUE)), 
+    source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),
+                                                        '\n',fixed=TRUE)), 
                               stringsAsFactors = FALSE)
     # remove blank columns
     source_data <- source_data[, 2:5]
