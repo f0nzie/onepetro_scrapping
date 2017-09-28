@@ -1,0 +1,330 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## function make_search_url before adding to url.R function
+
+```{r}
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewed=", 
+                   published_between = "published_between=", 
+                   from_year = "from_year=",
+                   to_year = "to_year=", 
+                   start = "start=", 
+                   rows = "rows=")
+
+
+make_search_url <- function(query = NULL, start = NULL, from_year = NULL, 
+                       peer_reviewed = NULL, 
+                       published_between = NULL, 
+                       rows = NULL, 
+                       to_year = NULL, 
+                       how = "any") {
+  
+    website <- "https://www.onepetro.org"
+    
+    if (!is.null(start) || !is.null(rows)) {
+        if (!is.null(rows) & is.null(start)) start = 0  
+        stopifnot(is.numeric(start), is.numeric(rows))
+    }
+    
+    if (!is.null(from_year) && !is.null(to_year)) {
+        stopifnot(is.numeric(from_year), is.numeric(to_year))
+        # stopifnot(from_year > 1900, "year out of range")
+    }
+    
+    if (is.null(query)) {
+        stop("search words not provided")
+    } else {
+        split_query <- unlist(strsplit(query, " "))
+        if (length(split_query) > 1) {
+            query <- paste(split_query, collapse = "+")
+            # use function shQuote to add extra quotes when we want how = "all"
+            #query <- ifelse(how == "all", dQuote(query), query)
+            query <- ifelse(how == "all", shQuote(query), query)
+            # query <- ifelse(how == "all", paste0("'", query, "'"), query)
+            print(query)
+        }
+    }
+    
+    if (!is.null(from_year) || !is.null(to_year)) {
+        published_between = "on"
+        if (is.null(from_year)) {
+            from_year = ""
+        }
+        if (is.null(to_year)) {
+            to_year = ""
+        }
+    }
+    
+    # peer_reviewed=on if TRUE; blank if unslected or FALSE
+    if (is.null(peer_reviewed)) {
+        peer_reviewed = ""
+    } else {
+        if (peer_reviewed) peer_reviewed = "on"
+    }
+    
+  
+    #cat(rows, start, "\n")
+      
+    s_search  <- paste(website, "search", sep = "/")
+    
+    # these strings will need to join with the ampersand & at the tail
+    s_query   <- paste0("?q=", query)
+    s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+    s_publish <- paste0("published_between=", published_between)
+    s_from    <- paste0("from_year=", from_year)
+    s_to      <- paste0("to_year=", to_year)
+    s_start   <- paste0("start=", start) 
+    s_rows    <- paste0("rows=", rows)
+    
+    #url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
+    #url <- paste0(s_search, url)
+    
+    # url
+    s_url <- list(websearch = s_search, query = s_query, peer = s_peer, 
+       published_between = s_publish, from_year = s_from, to_year = s_to,
+       start = s_start, rows = s_rows
+       )
+  
+    for (i in 1:length(s_url)) {
+    # cat(i, my_url[[i]], "\n")
+    if (i == 1) joined <- s_url[[i]]
+    if (i == 2) joined <- paste0(joined, s_url[[i]])
+    if (i >=3 ) {
+    if (s_url[[i]] == form_input[[i]] & i <= 6) {
+        joined <- paste(joined, s_url[[i]], sep = "&")
+        } else  if (s_url[[i]] != form_input[[i]]) {
+            # cat(i, my_url[[i]], "\n")
+            joined <- paste(joined, s_url[[i]], sep = "&")
+        }
+    }
+    } 
+
+    #nq <- noquote(joined)
+    #as.character(noquote(sQuote(joined)))
+    joined
+}
+```
+
+
+
+```{r}
+my_url <- make_search_url(query = "neural network", from_year = 2010, to_year = 2015, how = "all")
+my_url
+get_papers_count(my_url)
+```
+
+```{r}
+# exact prhase: "neural network"
+my_url <- make_search_url(query = "neural network", how = "all")
+my_url
+get_papers_count(my_url)
+```
+
+```{r}
+# 
+my_url <- make_search_url(query = "neural network", how = "any")
+my_url
+get_papers_count(my_url)
+```
+
+
+```{r}
+my_url <- make_search_url(query = "neural network", from_year = 1980, to_year = 1990, how = "all")
+my_url
+get_papers_count(my_url)
+```
+
+```{r}
+my_url <- make_search_url(query = "neural network", from_year = 2014, how = "any")
+my_url
+get_papers_count(my_url)
+```
+
+
+## modification of create_url function. Separate junction of search strings in a list.
+
+```{r}
+## modification of create_url function. Separate junction of search strings in a list.
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewed=", 
+                   published_between = "published_between=", 
+                   from_year = "from_year=",
+                   to_year = "to_year=", 
+                   start = "start=", 
+                   rows = "rows=")
+
+create_url2 <- function(start = NULL, query = NULL, from_year = NULL, 
+                       peer_reviewed = NULL, 
+                       published_between = NULL, 
+                       rows = NULL, 
+                       to_year = NULL, 
+                       how = "any") {
+  
+  website <- "https://www.onepetro.org"
+  
+  # if (is.null(start)) {
+  #   start = ""
+  # }
+  if (is.null(query)) {
+    stop("search words not provided")
+  } else {
+    split_query <- unlist(strsplit(query, " "))
+    if (length(split_query) > 1) {
+      query <- paste(split_query, collapse = "+")
+      # use function shQuote to add extra quotes when we want how = "all"
+      query <- ifelse(how == "all", shQuote(query), query)
+      print(query)
+    }
+  }
+  
+  if (is.null(from_year)) {
+    from_year = ""
+  }
+  # peer_reviewed=on if TRUE; blank if unslected or FALSE
+  if (is.null(peer_reviewed)) {
+    peer_reviewed = ""
+  } else {
+      if (peer_reviewed) peer_reviewed = "on"
+  }
+  
+  if (is.null(published_between)) {
+    published_between = ""
+  }
+
+  if (!is.null(rows) & is.null(start)) {
+    start = 0  
+  }
+  
+  if (is.null(to_year)) {
+    to_year = ""
+  }
+  
+  #cat(rows, start, "\n")
+  
+  s_search  <- paste(website, "search", sep = "/")
+  
+  # these strings will need to join with the ampersand & at the tail
+  s_query   <- paste0("?q=", query)
+  s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+  s_publish <- paste0("published_between=", published_between)
+  s_from    <- paste0("from_year=", from_year)
+  s_to      <- paste0("to_year=", to_year)
+  s_start   <- paste0("start=", start) 
+  s_rows    <- paste0("rows=", rows)
+  
+  #url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
+  #url <- paste0(s_search, url)
+  
+  # url
+  list(websearch = s_search, query = s_query, peer = s_peer, 
+       published_between = s_publish, from_year = s_from, to_year = s_to,
+       start = s_start, rows = s_rows
+       )
+}
+```
+
+
+```{r}
+my_url <- create_url2(query = "neural", start = 20, rows = 50, peer_reviewed = TRUE)
+#joined <- ""
+#
+for (i in 1:length(my_url)) {
+  # cat(i, my_url[[i]], "\n")
+  if (i == 1) joined <- my_url[[i]]
+  if (i == 2) joined <- paste0(joined, my_url[[i]])
+  if (i >=3 ) {
+    if (my_url[[i]] == form_input[[i]] & i <= 6) {
+      joined <- paste(joined, my_url[[i]], sep = "&")
+    } else  if (my_url[[i]] != form_input[[i]]) {
+        # cat(i, my_url[[i]], "\n")
+        joined <- paste(joined, my_url[[i]], sep = "&")
+      
+    }
+  }
+} 
+
+joined  
+get_papers_count(joined)
+```
+
+## copy original function create_url to test passing queries on a list
+
+```{r}
+## copy original function create_url to test passing queries on a list
+create_url <- function(start = NULL, query = NULL, from_year = NULL, 
+                       peer_reviewed = NULL, 
+                       published_between = NULL, 
+                       rows = NULL, 
+                       to_year = NULL, 
+                       how = "any") {
+  
+  website <- "https://www.onepetro.org"
+  
+  if (is.null(start)) {
+    start = ""
+  }
+  if (is.null(query)) {
+    stop("search words not provided")
+  } else {
+    split_query <- unlist(strsplit(query, " "))
+    if (length(split_query) > 1) {
+      query <- paste(split_query, collapse = "+")
+      # use function shQuote to add extra quotes when we want how = "all"
+      query <- ifelse(how == "all", shQuote(query), query)
+      print(query)
+    }
+  }
+  print(query)
+  
+  if (is.null(from_year)) {
+    from_year = ""
+  }
+  if (is.null(peer_reviewed)) {
+    peer_reviewed = ""
+  }
+  if (is.null(published_between)) {
+    published_between = ""
+  }
+  if (is.null(rows)) {
+    rows = ""
+  } else {
+    if(is.null(start)) start = 0
+  }
+  if (is.null(to_year)) {
+    to_year = ""
+  }
+  
+  s_list <- list()
+  
+  s_list[1] <- s_search  <- paste(website, "search", sep = "/")
+  
+  # these strings will need to join with the ampersand & at the tail
+  s_list[2] <- s_q       <- paste0("?q=", query)
+  s_list[3] <- s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+  s_list[4] <- s_publish <- paste0("published_between=", published_between)
+  s_list[5] <- s_from    <- paste0("from_year=", from_year)
+  s_list[6] <- s_to      <- paste0("to_year=", to_year)
+  s_list[7] <- s_start   <- paste0("start=", start) 
+  s_list[8] <- s_rows    <- paste0("rows=", rows)
+  
+  url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
+  url <- paste0(s_search, url)
+  # url
+  s_list
+}
+```
+
+
+```{r}
+# test create_url for smartwell query
+# source('D:/Dropbox/R/web_scraping/R/url.R')
+my_url <- create_url(query = "smartwell")
+my_url
+# smartwell <- send_url(my_url)
+```
+
