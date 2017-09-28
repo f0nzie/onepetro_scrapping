@@ -174,52 +174,28 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCdEOi9Ecm9wYm94L1Ivd2ViX3NjcmFwaW5nL1IvdXJsLlInKVxuYGBgIn0= -->
-<pre class="r"><code>source('D:/Dropbox/R/web_scraping/R/url.R')</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bWwyXG4ifQ== -->
-<pre><code>Loading required package: xml2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5NzAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTgwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuXG5teV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gXCJuZXVyYWwgbmV0d29ya1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbV95ZWFyID0gMTk3MCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHRvX3llYXIgICA9IDE5ODAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBob3cgPSBcImFsbFwiKVxubXlfdXJsXG5nZXRfcGFwZXJzX2NvdW50KG15X3VybClcbmBgYCJ9 -->
+<pre class="r"><code>source('./R/url.R')
+
+my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
                           from_year = 1970, 
                           to_year   = 1980, 
-                          how = &quot;all&quot;)</code></pre>
+                          how = &quot;all&quot;)
+my_url
+get_papers_count(my_url)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiXFxcIm5ldXJhbCtuZXR3b3JrXFxcIlwiXG4ifQ== -->
-<pre><code>[1] &quot;\&quot;neural+network\&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsXG5gYGAifQ== -->
-<pre class="r"><code>my_url</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaHR0cHM6Ly93d3cub25lcGV0cm8ub3JnL3NlYXJjaD9xPVxcXCJuZXVyYWwrbmV0d29ya1xcXCImcGVlcl9yZXZpZXdlZD0mcHVibGlzaGVkX2JldHdlZW49b24mZnJvbV95ZWFyPTE5NzAmdG9feWVhcj0xOTgwXCJcbiJ9 -->
-<pre><code>[1] &quot;https://www.onepetro.org/search?q=\&quot;neural+network\&quot;&amp;peer_reviewed=&amp;published_between=on&amp;from_year=1970&amp;to_year=1980&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
-<pre class="r"><code>get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
-<pre><code>[1] 0</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5ODAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTkwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5teV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gXCJuZXVyYWwgbmV0d29ya1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgZnJvbV95ZWFyID0gMTk4MCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHRvX3llYXIgICA9IDE5OTAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBob3cgPSBcImFsbFwiKVxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
+<pre class="r"><code>
+my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
                           from_year = 1980, 
                           to_year   = 1990, 
-                          how = &quot;all&quot;)</code></pre>
+                          how = &quot;all&quot;)
+get_papers_count(my_url)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiXFxcIm5ldXJhbCtuZXR3b3JrXFxcIlwiXG4ifQ== -->
-<pre><code>[1] &quot;\&quot;neural+network\&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
-<pre class="r"><code>get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE3XG4ifQ== -->
-<pre><code>[1] 17</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -232,8 +208,68 @@ $(document).ready(function () {
 get_papers_count(my_url)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuYGBgIn0= -->
+<pre class="r"><code>source('./R/url.R')</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bWwyXG4ifQ== -->
+<pre><code>Loading required package: xml2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbm9uZXBldHJvX3BhZ2VfdG9fZGF0YWZyYW1lKG15X3VybClcbmBgYCJ9 -->
+<pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+                          from_year = 1990, 
+                          to_year   = 2000, 
+                          how = &quot;all&quot;)
+onepetro_page_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NiwibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFCc1ZXNjIvYk5oQlhuTWRXWSswS2RNQ0dmZGxoeFlvVmtBekppNXNFM1llNXR1TTZXenNqU1p2MlU4Rkl0RVdFSWpVK2tuaWY5cGQzTzhxU1kzdDJ0Z0o3Q0pCRjMvTjN4K01kajd0dm12VTNkYy96YXQ3bTFvWlgyOFRsVmcxL05yd3Q3NDc3WG52ZTVnTmM3T0I3SDk5NnlYallwYkVVbDVKYnc2U0FWNXFKTWJ5a1ZoR09IM01sMVlVdVJiOWRKTU9KSWZHRkUzOU51WXlabWNDUUZZUlMvdWtKWlRwak1Rd1ZFekhMVWJVanMxd0tLb3lHdGlCOG9wbSsxZVhqUTZhMGdXZUtrb3ZLK3EwSzM3ZVZZU01XczRLMUlBR0RCQjJ6MFFTT3FUWXNzNXdVSVhlSVNGaENESjNGMlZXTTgrQVpNOUJsWkN5a1EzbkdUTHJHNTk2Y3o0RXdsSE0ycGlLbU1QZ3pCQUY5S3ZNVUE0OHI5ZDJCdUtSS095aHlCRlhPenNnbEhVbVYvVVYrVmpnd0tZVWhOVXB5YWpNa0pGWWJOU2tWd21XRnRraGdTSEtxWnA1ZENDcFgxQlRwV1NxWHoyRDJSQWNIVDRMb1NSVEJTbDR6Q01Ob2Z6VVA5WnF0ZzlXOE1BaS8yd3NyM2hjM3ZMQVpJaS9jM1EyT2hxY1YvOEc4YnF1MUh3emI2K0dFNjZIdTdhK0JHaUd2dVliWENzSm90d2xMS2JwM0kzUFM2OE8vUWgzMi9qNzFuOEd3R09PWE45eU9GQ09xaW5vdjZ1Zy9sZmo4UnVKSVdvVXQ1VVBZLzM4VWkxbTlEM09QT3lacjZNMFBsQTlYMGZFMHJhU3ZrNy9GN3pwNnRJYmVXb3I3Y1U5cktoUmwySGg4T0piblZCa2ZmaVNLYTJXeG03MFNyT2lRcHVwaUQwL2lOR01KQ2gzWlRDUVQxQ282M3JraTJzZHBRWDVsdkJUOTRia2xZb3pXcEEzZTR0S0hsMFZmYzhNb1pVVENxWFVqWmViQmgrZlliK1BVK25CSzJCVVJwWjJ2ejNBU09IamRScS9oUXp1VHNjVEJKaE1iVDZlSWJKU1MzM1NwRUJRTnVTOURQSzVkbmRJNEZaTEw4UVI2Q1RPeUtnNi9yV2hLWExqSGpUYmE3VjFmbzdFNXV6aXJLRkZ4T3VmZ3NHK2xEMitaRHgzcWVqWGduSUNoTkc2NllWaUhqUEpFNDNTMkNhUG92b051RlVra1lOS2s1RzdJdkdCaU51MzJqK1VqbS9Hbkp2V2hiMFd4QlFPQkE5SllBd2tXcWh0V3YxZ0tpWVUreDczeDRWQVJMT0ZxODE3RUhaeFRlQlh3MFc2Y0VvcUh6R1ZJWVlKK1pod2VRWi9vT2ZoZi9VVEhZMnFNRStlMDJDOW1tRTRMc1p6SFN6ZVhiVUV5QkR1dG1KMlNXRWQ0bkw3RHFVMUt5c2U1TzFEdldGTCszOUY0NEdjZ3Q4d2tuNjBubU5CeS9RbXhKcFVxbWxwYWRIeEh5YXRHNWZ5dXUxdjk1aFZQZlJsaHpJbXVFRmJFdXJQWUdDblV4My92bDFRK2tybmJYVlNxdVV2WjlwTHlobG9pZkdxRlE1SUVXSmppSW9pbUtKQTlmZTZXNi9yY2VtZnFzdlo3YVdxN1Nnd1ZZOXorQ2pzbjU3UTZLL2N3NGlMZ1JvNDNObE5GZ2xUZE1OS1FTcTRlUzE1Uml0aTg5MzhBVStyU01JSUtBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["title_data"],"name":[1],"type":["chr"],"align":["left"]},{"label":["paper_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["source"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["year"],"name":[5],"type":["chr"],"align":["left"]},{"label":["author1_data"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Deconvolution Using Neural Networks","2":"1996-1611","3":"SEG","4":"Conference Paper","5":"1996","6":"Essenreiter, Robert, Karlsruhe University"},{"1":"Neural Network Stacking Velocity Picking","2":"1992-0018","3":"SEG","4":"Conference Paper","5":"1992","6":"Schmidt, Jumndyr, Petrobras, Brazil"},{"1":"Seismic Principal Components Analysis Using Neural Networks","2":"1996-1259","3":"SEG","4":"Conference Paper","5":"1996","6":"Huang, Kou-Yuan, National Chiao Tung University, Hsinchu, Taiwan"},{"1":"First Break Picking Using Neural Networks","2":"1990-0370","3":"SEG","4":"Conference Paper","5":"1990","6":"Wagner, D.E., Amoco Production Co."},{"1":"Artificial Neural Networks Identify Restimulation Candidates","2":"0200-0044-JPT","3":"SPE","4":"Journal Paper","5":"2000","6":"Denney, Dennis, JPT Technology Editor"},{"1":"Drill-Bit Diagnosis With Neural Networks","2":"19558-PA","3":"SPE","4":"Journal Paper","5":"1990","6":"Arehart, R.A., Exxon Production Research Co."},{"1":"Artificial Intelligence I Neural Networks In Geophysics","2":"1992-0001","3":"SEG","4":"Conference Paper","5":"1992","6":"Guo, Yi, Center for Potential Fields Studies, Colorado School of Mines"},{"1":"Inversion of Seismic Waveforms Using Neural Networks","2":"1992-0788","3":"SEG","4":"Conference Paper","5":"1992","6":"Ro&uml;th, Gunter, Institut de Physique du Globe, France"},{"1":"Neural Networks In the Petroleum Industry","2":"1991-0728","3":"SEG","4":"Conference Paper","5":"1991","6":"McCormack, Michael P., Arco Oil & Gas Co."},{"1":"Neural Networks And Paper Seismic Interpretation","2":"1995-0142","3":"SEG","4":"Conference Paper","5":"1995","6":"Leggett, Miles, British Gas plc"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuXG5teV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gXCJuZXVyYWwgbmV0d29ya1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcblxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5vbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpXG5gYGAifQ== -->
+<pre class="r"><code>source('./R/url.R')
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnRDovRHJvcGJveC9SL3dlYl9zY3JhcGluZy9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTcwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk4MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KbXlfdXJsDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA0KDQpgYGB7cn0NCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTgwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk5MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KZ2V0X3BhcGVyc19jb3VudChteV91cmwpDQpgYGANCg0KYGBge3J9DQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA==</div>
+my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+                          how = &quot;all&quot;)
+
+get_papers_count(my_url)
+onepetro_page_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9IFwiYWxsXCIpXG5nZXRfcGFwZXJzX2NvdW50KG15X3VybClcbmBgYCJ9 -->
+<pre class="r"><code>source('./R/url.R')
+my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
+                          how = &quot;all&quot;)
+get_papers_count(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI5OThcbiJ9 -->
+<pre><code>[1] 2998</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub25lcGV0cm9fcGFnZV90b19kYXRhZnJhbWUobXlfdXJsKVxuYGBgIn0= -->
+<pre class="r"><code>onepetro_page_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NiwibnJvdyI6OX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJyMVczVy9iTmhCWG5JL054dG9WNklBT2V5STZER2dCeTVQY09JMjNQY3lOdmFWWjBSbDIrckduZ3FGbzZ4Q0tGQ2dxaWZ2VXY3emRVUllUV2JNTEZOMUdRQkoxSDcvNzNZazhhako4M1cyOWJubWUxL0MyZDdhOHhqWk9keHA0Mi9KMnZLWjlYbm5lOWwyYzdPRjFCNjltcWZoK3lKbVNGMHJrQnBRa0x6S1FjL0tjNTVvS2ZKaExwYyt6MHZSZVRVd0dNaUtEbDMrVzZnZXJhakkxbEoxYnRKZGNLQVptUWNaUUNFcjcvdE1rRllBS01raFRyYTRnb1FVRk5hdkZKOVRHU2ExeFllSDQvRHpsa0NYQXlGaURaSkNpeDVGS1VpVzVOSlljRllzTXNvK205UEEzMEpraFR6U241NDdlUngxK0dXZ0RNMlJkcUZiTDhUVEN3REJia0FuUERDUzVXT1p6aFBRaG9vWTdqQWRERFVMNFR6RHpJZEM1VkpibEt6RHhocGdITHM5NklVbGVNRDFXNlF5NGlHcnV0US85RGJrZVliOS80SWNIWVVqK3Flc0dRZGNQdXQzK0doMzZvUzRJRDlmcHd2MUh3WUUvSHF6M3czamQzZ2JNd0E4ZVBRNmM3dHNiWFlCa01ONyt2bjh5UG5YNnUxWGZYdSt3RXZKZU5ZMnc1L2NPdzk1ankzYTFFcmR2ekthajM4bG5Tc2VqL3daaE0rNXFOdC9kYUkrVW5ISE5KZU5rVEZPdS8wV0xTbWxQVks1eGIvM2ZJVDZEd1dyQjdwREtzRXR6bmR4dWd3MzJhK1ZvMy84VWZMdnNOK0NzbFcrMkQzdTEvQjZPc294THpjRnczU1lUZGNhMWFaTS9xQmFaem1OT1hraTQ0RHJEUHVMNnl5UkhEeUhhMkFlQnlqWTVwa21hS2VtWGNqSlZNM05KTlNkVHJpK0E4WXc4TTFISEhTQlRGaWNRWVlpVFBKSFJBbU9PdWRIcVROUE1JdEszSUVyVG41NUJtd3lwOGtXT1VXNTQySlkvWlZCOE1kdnJUem1McFJKcVhtaU9ZcEMwUlBqMU9LZHlqdG1vM1A4cnQxeWZGMDNXdHY0WXFDS251VzNnMThpWUM3WklGdWR0Y2tyaGtzb1M1LzRyN0x1MlBNUE9xTk1tZzBReGhjZUlpbksyN05uS3BmZkRrRXZKRWNnK0FUT3lyYWhDY0JTQlVXNFJ0Z2VheDlTV2U5SVpJTzdvNmdyQktyaDRNbkNxV1Z3SjhPTW5wbFE3MkhjbFRmQmtXUzZCdlZMWU1tQUVmNE9Iaml2Y2w2bmRDVzhnS3QvM010eERqSmR2TzJhUlhzOFh5TENjZjBWekV5c2RMcEZXQXplMXV1eTQ0TGZzcjhjN3J4ak5Pa01tYU9ZWU9tSExJblptR3YzeDdYM041UXVWTGc5NnIySC9XWFpyemx1Nkp2ZzZsNVpKNU9PWGx1ZSszUkd0UXIwY3Q4cDVzekxmVzRac2ZDaWhkbDFodUp5RGRNWFlGZlNNdStWN0d6TXVFdTZrK01OaFhDWW96VHBHR2Vyc1drd0pKeWx5ODk3L0RkTjg5NE9oQ1FBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["title_data"],"name":[1],"type":["chr"],"align":["left"]},{"label":["paper_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["source"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["year"],"name":[5],"type":["chr"],"align":["left"]},{"label":["author1_data"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Deconvolution Using Neural Networks","2":"1996-1611","3":"SEG","4":"Conference Paper","5":"1996","6":"Essenreiter, Robert, Karlsruhe University"},{"1":"Neural Networks And AVO","2":"2002-0229","3":"SEG","4":"Conference Paper","5":"2002","6":"Russell, Brian, Hampson-Russell Software Services Ltd."},{"1":"Neural Network Stacking Velocity Picking","2":"1992-0018","3":"SEG","4":"Conference Paper","5":"1992","6":"Schmidt, Jumndyr, Petrobras, Brazil"},{"1":"Implicit Approximation of Neural Network and Applications","2":"114306-PA","3":"SPE","4":"Journal Paper","5":"2009","6":"Li, Dao-lun, University of Science and Technology of China"},{"1":"Seismic Principal Components Analysis Using Neural Networks","2":"1996-1259","3":"SEG","4":"Conference Paper","5":"1996","6":"Huang, Kou-Yuan, National Chiao Tung University, Hsinchu, Taiwan"},{"1":"First Break Picking Using Neural Networks","2":"1990-0370","3":"SEG","4":"Conference Paper","5":"1990","6":"Wagner, D.E., Amoco Production Co."},{"1":"Artificial Neural Networks Identify Restimulation Candidates","2":"0200-0044-JPT","3":"SPE","4":"Journal Paper","5":"2000","6":"Denney, Dennis, JPT Technology Editor"},{"1":"Drill-Bit Diagnosis With Neural Networks","2":"19558-PA","3":"SPE","4":"Journal Paper","5":"1990","6":"Arehart, R.A., Exxon Production Research Co."},{"1":"Seismic Velocity Picking using Hopfield Neural Network","2":"2015-5815718","3":"SEG","4":"Conference Paper","5":"2015","6":"Huang, Kou-Yuan, National Chiao Tung University"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[9]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTcwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk4MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KbXlfdXJsDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA0KDQpgYGB7cn0NCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTgwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk5MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KZ2V0X3BhcGVyc19jb3VudChteV91cmwpDQpgYGANCg0KYGBge3J9DQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCmBgYA0KDQoNCmBgYHtyfQ0Kc291cmNlKCcuL1IvdXJsLlInKQ0KDQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQoNCm9uZXBldHJvX3BhZ2VfdG9fZGF0YWZyYW1lKG15X3VybCkNCmBgYA0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBob3cgPSAiYWxsIikNCg0KZ2V0X3BhcGVyc19jb3VudChteV91cmwpDQpvbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpDQpgYGANCg0KDQoNCg0KDQoNCmBgYHtyfQ0Kc291cmNlKCcuL1IvdXJsLlInKQ0KDQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCm9uZXBldHJvX3BhZ2VfdG9fZGF0YWZyYW1lKG15X3VybCkNCmBgYA==</div>
 
 
 

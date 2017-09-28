@@ -5,63 +5,12 @@ library('rvest')
 # Specifying the url for desired website to be scrapped
 url <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=999&to_year="
 
-
-create_url <- function(start = NULL, query = NULL, from_year = NULL, 
-                       peer_reviewed = NULL, 
-                       published_between = NULL, 
-                       rows = NULL, 
-                       to_year = NULL, 
-                       how = "any") {
-  
-  website <- "https://www.onepetro.org"
-  
-  if (is.null(start)) {
-    start = ""
-  }
-  if (is.null(query)) {
-    stop("search words not provided")
-  } else {
-    split_query <- unlist(strsplit(query, " "))
-    if (length(split_query) > 1) {
-      query <- paste(split_query, collapse = "+")
-      # use function shQuote to add extra quotes when we want how = "all"
-      query <- ifelse(how == "all", shQuote(query), query)
-      print(query)
-    }
-  }
-  print(query)
-  
-  if (is.null(from_year)) {
-    from_year = ""
-  }
-  if (is.null(peer_reviewed)) {
-    peer_reviewed = ""
-  }
-  if (is.null(published_between)) {
-    published_between = ""
-  }
-  if (is.null(rows)) {
-    rows = ""
-  } else {
-    if(is.null(start)) start = 0
-  }
-  if (is.null(to_year)) {
-    to_year = ""
-  }
-  
-  s_search  <- paste(website, "search", sep = "/")
-  s_q       <- paste0("?q=", query)
-  s_peer    <- paste0("peer_reviewed=", peer_reviewed)
-  s_publish <- paste0("published_between=", published_between)
-  s_from    <- paste0("from_year=", from_year)
-  s_to      <- paste0("to_year=", to_year)
-  s_start   <- paste0("start=", start) 
-  s_rows    <- paste0("rows=", rows)
-  
-  url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
-  url <- paste0(s_search, url)
-  url
-}
+form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewed=", 
+                   published_between = "published_between=", 
+                   from_year = "from_year=",
+                   to_year = "to_year=", 
+                   start = "start=", 
+                   rows = "rows=")
 
 # Examples:
 # https://www.onepetro.org/search?q=%22data+science%22&peer_reviewed=&published_between=&from_year=&to_year=
@@ -87,12 +36,7 @@ get_papers_count <- function(url) {
 }
 
 
-form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewed=", 
-                   published_between = "published_between=", 
-                   from_year = "from_year=",
-                   to_year = "to_year=", 
-                   start = "start=", 
-                   rows = "rows=")
+
 
 
 
@@ -255,4 +199,67 @@ onepetro_page_to_dataframe <- function(url) {
     df_sources <- read_sources(webpage)
     df_author  <- read_author(webpage)
     cbind(df_titles, df_sources, df_author)
+}
+
+
+
+
+
+
+
+create_url <- function(start = NULL, query = NULL, from_year = NULL, 
+                       peer_reviewed = NULL, 
+                       published_between = NULL, 
+                       rows = NULL, 
+                       to_year = NULL, 
+                       how = "any") {
+    
+    website <- "https://www.onepetro.org"
+    
+    if (is.null(start)) {
+        start = ""
+    }
+    if (is.null(query)) {
+        stop("search words not provided")
+    } else {
+        split_query <- unlist(strsplit(query, " "))
+        if (length(split_query) > 1) {
+            query <- paste(split_query, collapse = "+")
+            # use function shQuote to add extra quotes when we want how = "all"
+            query <- ifelse(how == "all", shQuote(query), query)
+            print(query)
+        }
+    }
+    print(query)
+    
+    if (is.null(from_year)) {
+        from_year = ""
+    }
+    if (is.null(peer_reviewed)) {
+        peer_reviewed = ""
+    }
+    if (is.null(published_between)) {
+        published_between = ""
+    }
+    if (is.null(rows)) {
+        rows = ""
+    } else {
+        if(is.null(start)) start = 0
+    }
+    if (is.null(to_year)) {
+        to_year = ""
+    }
+    
+    s_search  <- paste(website, "search", sep = "/")
+    s_q       <- paste0("?q=", query)
+    s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+    s_publish <- paste0("published_between=", published_between)
+    s_from    <- paste0("from_year=", from_year)
+    s_to      <- paste0("to_year=", to_year)
+    s_start   <- paste0("start=", start) 
+    s_rows    <- paste0("rows=", rows)
+    
+    url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
+    url <- paste0(s_search, url)
+    url
 }

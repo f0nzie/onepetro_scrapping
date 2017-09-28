@@ -4,7 +4,7 @@ output: html_notebook
 ---
 
 ```{r}
-source('D:/Dropbox/R/web_scraping/R/url.R')
+source('./R/url.R')
 
 my_url <- make_search_url(query = "neural network", 
                           from_year = 1970, 
@@ -29,4 +29,41 @@ my_url <- make_search_url(query = "neural network",
                           to_year   = 2000, 
                           how = "all")
 get_papers_count(my_url)
+```
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "neural network", 
+                          from_year = 1990, 
+                          to_year   = 2000, 
+                          how = "all")
+
+onepetro_page_to_dataframe(my_url)
+```
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "neural network", 
+                          how = "all")
+
+get_papers_count(my_url)
+onepetro_page_to_dataframe(my_url)
+```
+
+
+
+
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "neural network", 
+                          how = "all")
+
+get_papers_count(my_url)
+onepetro_page_to_dataframe(my_url)
 ```
