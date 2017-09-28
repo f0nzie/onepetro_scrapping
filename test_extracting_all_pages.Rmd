@@ -1,0 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "unconventional")
+```
+
