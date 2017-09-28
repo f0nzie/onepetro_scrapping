@@ -3,7 +3,11 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+## Read and bind into a dataframe several result Onepetro pages
+
 ```{r}
+## Read and bind into a dataframe several result Onepetro pages
+## 
 #Loading the rvest package
 library(xml2)
 library('rvest')
@@ -69,17 +73,17 @@ read_author <- function(webpage) {
 }
 
 
-read_onepetro <- function(url) {
-  webpage <- read_html(url)
-  df_titles  <- read_titles(webpage)
-  df_sources <- read_sources(webpage)
-  df_author  <- read_author(webpage)
-  cbind(df_titles, df_sources, df_author)
+onepetro_page_to_dataframe <- function(url) {
+    webpage <- read_html(url)
+    df_titles  <- read_titles(webpage)
+    df_sources <- read_sources(webpage)
+    df_author  <- read_author(webpage)
+    cbind(df_titles, df_sources, df_author)
 }
 
-p1 <- read_onepetro("1000_conference.html")
-p2 <- read_onepetro("2000_conference.html")
-p3 <- read_onepetro("3000_conference.html")
+p1 <- onepetro_page_to_dataframe("1000_conference.html")
+p2 <- onepetro_page_to_dataframe("2000_conference.html")
+p3 <- onepetro_page_to_dataframe("3000_conference.html")
 
 nn_papers <- rbind(p1, p2, p3)
 nn_papers
