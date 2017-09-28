@@ -1,6 +1,5 @@
 
 #Loading the rvest package
-library(xml2)
 library('rvest')
 
 # Specifying the url for desired website to be scrapped
@@ -124,7 +123,7 @@ make_search_url <- function(query = NULL, start = NULL, from_year = NULL,
             #query <- ifelse(how == "all", dQuote(query), query)
             query <- ifelse(how == "all", shQuote(query), query)
             # query <- ifelse(how == "all", paste0("'", query, "'"), query)
-            print(query)
+            # print(query)
         }
     }
     
