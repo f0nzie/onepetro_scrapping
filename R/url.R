@@ -1,5 +1,6 @@
 
 #Loading the rvest package
+library(xml2)
 library('rvest')
 
 # Specifying the url for desired website to be scrapped
