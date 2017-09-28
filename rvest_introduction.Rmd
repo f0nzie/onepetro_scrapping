@@ -1,0 +1,71 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+http://www.reed.edu/data-at-reed/resources/R/rvest.html
+
+```{r}
+# load packages 
+suppressMessages(library(rvest))
+suppressMessages(library(dplyr))
+suppressMessages(library(reshape2))
+suppressMessages(library(googleVis))
+
+# helpful resources for using rvest 
+  # vignette("selectorgadget")
+  # http://blog.rstudio.org/2014/11/24/rvest-easy-web-scraping-with-r/
+```
+
+```{r}
+# download html file
+webpage <- read_html("http://www.reed.edu/ir/geographic_states.html")
+
+# the data we want is in the first table on this page
+# the html_table() command coerces the data into a data frame
+webpage %>%
+  html_nodes("table") %>%
+  .[[1]] %>%
+  html_table()
+```
+
+```{r}
+# repeat above code but store results in a data frame
+data <- 
+webpage %>%
+  html_nodes("table") %>%
+  .[[1]] %>%
+  html_table()
+```
+
+```{r}
+# we can now work with this data from the web as a data frame in R
+# remove total row from data 
+data <- 
+  data %>% 
+  filter(State!='Total')
+
+# reshape data for plotting 
+data_long <- melt(data, id='State')
+
+# rename columns in long data frame 
+colnames(data_long) <- c('State', 'Year', 'Matriculants')
+
+# create and manipulate variables for plotting
+data_long$Year <- as.numeric(as.character(data_long$Year))
+data_long$year <- data_long$Year
+data_long$state <- data_long$State
+```
+
+
+```{r}
+data_long
+```
+
+```{r}
+# plot data 
+gvisMotionChart(data_long, "state", "year",
+                yvar="Matriculants", xvar="Year",
+                colorvar="State")
+```
+

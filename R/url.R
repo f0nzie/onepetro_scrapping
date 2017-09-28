@@ -1,0 +1,185 @@
+
+#Loading the rvest package
+library('rvest')
+
+# Specifying the url for desired website to be scrapped
+url <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=999&to_year="
+
+
+create_url <- function(start = NULL, query = NULL, from_year = NULL, 
+                       peer_reviewed = NULL, 
+                       published_between = NULL, 
+                       rows = NULL, 
+                       to_year = NULL, 
+                       how = "any") {
+  
+  website <- "https://www.onepetro.org"
+  
+  if (is.null(start)) {
+    start = ""
+  }
+  if (is.null(query)) {
+    stop("search words not provided")
+  } else {
+    split_query <- unlist(strsplit(query, " "))
+    if (length(split_query) > 1) {
+      query <- paste(split_query, collapse = "+")
+      # use function shQuote to add extra quotes when we want how = "all"
+      query <- ifelse(how == "all", shQuote(query), query)
+      print(query)
+    }
+  }
+  print(query)
+  
+  if (is.null(from_year)) {
+    from_year = ""
+  }
+  if (is.null(peer_reviewed)) {
+    peer_reviewed = ""
+  }
+  if (is.null(published_between)) {
+    published_between = ""
+  }
+  if (is.null(rows)) {
+    rows = ""
+  } else {
+    if(is.null(start)) start = 0
+  }
+  if (is.null(to_year)) {
+    to_year = ""
+  }
+  
+  s_search  <- paste(website, "search", sep = "/")
+  s_q       <- paste0("?q=", query)
+  s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+  s_publish <- paste0("published_between=", published_between)
+  s_from    <- paste0("from_year=", from_year)
+  s_to      <- paste0("to_year=", to_year)
+  s_start   <- paste0("start=", start) 
+  s_rows    <- paste0("rows=", rows)
+  
+  url <- paste(s_q, s_peer, s_publish, s_from, s_to, sep = "&")
+  url <- paste0(s_search, url)
+  url
+}
+
+# Examples:
+# https://www.onepetro.org/search?q=%22data+science%22&peer_reviewed=&published_between=&from_year=&to_year=
+# 
+
+send_url <- function(url, how = "any") {
+  #Reading the HTML code from the website
+  read_html(url)
+}
+
+
+get_papers_count <- function(url) {
+  result <- send_url(url)
+  
+  papers <- result %>%
+    html_nodes("h2") %>%
+    html_text()
+  
+  # extract the numeric part of the results
+  pattern <- "[\\d,]+(?= results.)"    # a number, including comma, before " results."
+  m <- regexpr(pattern, papers[1], perl = TRUE)       # matched
+  as.numeric(gsub(",", "", regmatches(papers[1], m))) # remove comma first
+}
+
+
+form_input <- list(dummy = "dummy", query = "?q=", peer_reviewed = "peer_reviewed=", 
+                   published_between = "published_between=", 
+                   from_year = "from_year=",
+                   to_year = "to_year=", 
+                   start = "start=", 
+                   rows = "rows=")
+
+
+make_search_url <- function(query = NULL, start = NULL, from_year = NULL, 
+                            peer_reviewed = NULL, 
+                            published_between = NULL, 
+                            rows = NULL, 
+                            to_year = NULL, 
+                            how = "any") {
+    
+    website <- "https://www.onepetro.org"
+    
+    if (!is.null(start) || !is.null(rows)) {
+        if (!is.null(rows) & is.null(start)) start = 0  
+        stopifnot(is.numeric(start), is.numeric(rows))
+    }
+    
+    if (!is.null(from_year) && !is.null(to_year)) {
+        stopifnot(is.numeric(from_year), is.numeric(to_year))
+    }
+    
+    if (is.null(query)) {
+        stop("search words not provided")
+    } else {
+        split_query <- unlist(strsplit(query, " "))
+        if (length(split_query) > 1) {
+            query <- paste(split_query, collapse = "+")
+            # use function shQuote to add extra quotes when we want how = "all"
+            #query <- ifelse(how == "all", dQuote(query), query)
+            query <- ifelse(how == "all", shQuote(query), query)
+            # query <- ifelse(how == "all", paste0("'", query, "'"), query)
+            print(query)
+        }
+    }
+    
+    if (!is.null(from_year) || !is.null(to_year)) {
+        # use regex to validate year is between 1900 and 2099
+        pattern <- "(?:(?:19|20)[0-9]{2})"
+        if (!grepl(pattern, from_year, perl = TRUE) ||
+            !grepl(pattern, to_year,   perl = TRUE)) stop("year not valid")
+        # if valid year then turn on published_between
+        published_between = "on"
+        # if any of the *from* or *to* years are null replace with empty char
+        if (is.null(from_year)) {
+            from_year = ""
+        }
+        if (is.null(to_year)) {
+            to_year = ""
+        }
+    }
+    
+    # peer_reviewed=on if TRUE; blank if unslected or FALSE
+    if (is.null(peer_reviewed)) {
+        peer_reviewed = ""
+    } else {
+        if (peer_reviewed) peer_reviewed = "on"
+    }
+    
+    s_search  <- paste(website, "search", sep = "/")
+    
+    # these strings will need to join with the ampersand & at the tail
+    s_query   <- paste0("?q=", query)
+    s_peer    <- paste0("peer_reviewed=", peer_reviewed)
+    s_publish <- paste0("published_between=", published_between)
+    s_from    <- paste0("from_year=", from_year)
+    s_to      <- paste0("to_year=", to_year)
+    s_start   <- paste0("start=", start) 
+    s_rows    <- paste0("rows=", rows)
+    
+    # url
+    s_url <- list(websearch = s_search, query = s_query, peer = s_peer, 
+                  published_between = s_publish, from_year = s_from, to_year = s_to,
+                  start = s_start, rows = s_rows
+    )
+    
+    for (i in 1:length(s_url)) {
+        # cat(i, my_url[[i]], "\n")
+        if (i == 1) joined <- s_url[[i]]
+        if (i == 2) joined <- paste0(joined, s_url[[i]])
+        if (i >=3 ) {
+            if (s_url[[i]] == form_input[[i]] & i <= 6) {
+                joined <- paste(joined, s_url[[i]], sep = "&")
+            } else  if (s_url[[i]] != form_input[[i]]) {
+                # cat(i, my_url[[i]], "\n")
+                joined <- paste(joined, s_url[[i]], sep = "&")
+            }
+        }
+    } 
+    
+    joined
+}

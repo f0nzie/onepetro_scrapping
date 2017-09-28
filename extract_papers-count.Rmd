@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# result from Onepetro
+x <- fromto <- "Search results: Your search for 'neural networks', published between 2010 and 2015 has returned 1,152 results."
+```
+
+### Regex explanation
+```
+    [\\d,]+(?= results.)  match numbers, including comma, that are followed by
+                          the word " results."
+    
+    [\\d,]+        any number of digits including comma
+    
+    (?= results.)  positive lookahead. match anything that is followed by " results."
+ 
+```
+
+```{r}
+pattern <- "[\\d,]+(?= results.)"
+regexpr(pattern, x, perl = TRUE)
+```
+
+```{r}
+m <- regexpr(pattern, x, perl = TRUE)
+
+regmatches(x, m)
+```
+
+```{r}
+# this will give error
+as.numeric(regmatches(x, m))
+```
+
+```{r}
+# this will remove the comma
+as.numeric(gsub(",", "", regmatches(x, m)))
+```
+

@@ -1,0 +1,71 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+```{r setup, include=FALSE, error=TRUE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, error = TRUE)
+```
+
+Source: https://github.com/daattali/UBC-STAT545/blob/master/hw/hw12_web-scraping-api/hw12_web-scraping-api.md
+
+# Retrieve spendings on R&D per country
+
+The first piece of information we'll retrieve is a table telling us how much money different countries spend on R&D. There is a nice Wikipedia page with such a table, so we can scrape it very easily using Hadley Wickham's rvest package.
+Note: It literally took me 60 seconds to learn how to parse a table from Wikipedia using this new package. Hadley is awesome.
+Note 2: I'm not showing the raw table because the formatting is very messed up because of the rawness of the text in the table. I will show the table soon after cleaning it up a bit.
+
+```{r, message=FALSE}
+library(dplyr)
+library(rvest)
+```
+
+
+```{r}
+wikiRnDPageUrl <- "http://en.wikipedia.org/wiki/List_of_countries_by_research_and_development_spending"
+wikiRnDPage <- read_html(wikiRnDPageUrl)
+wikiRnDTable <-
+    wikiRnDPage %>%
+    html_node("table") %>%
+    html_table
+```
+
+
+Now clean up the data a little bit - remove the columns we don't care about, rename the ones we do want to keep, and fix the formatting of the numeric variables (Wikipedia sometimes puts footnote references beside numbers so we need to clean that up)
+
+```{r}
+countriesRnD <-
+    wikiRnDTable %>%
+    select(-grep("(Rank)|(Source)|(Expenditure.*per capita)|(Year)",
+                             colnames(.),
+                             ignore.case = TRUE))
+countryIdx <- grep("country", colnames(countriesRnD), ignore.case = TRUE)
+totalExpenseIdx <- grep("Expenditure", colnames(countriesRnD), ignore.case = TRUE)
+gdpPercentIdx <- grep("%", colnames(countriesRnD), ignore.case = TRUE)
+colnames(countriesRnD)[countryIdx] <- "country"
+colnames(countriesRnD)[totalExpenseIdx] <- "expense_RnD_billion_USD"
+colnames(countriesRnD)[gdpPercentIdx] <- "expense_RnD_Percent_of_GDP"
+
+countriesRnD %<>%
+    mutate(expense_RnD_Percent_of_GDP =
+                    as.numeric(sub("%", "", expense_RnD_Percent_of_GDP))) %>%
+    mutate(expense_RnD_billion_USD =
+                    as.numeric(sub("([0-9\\.]*).*", "\\1", expense_RnD_billion_USD)))
+```
+
+
+The R&D table is ready. Let's just take a quick look at it. Which countries spend the most on R&D?
+
+```{r}
+knitr::kable(head(countriesRnD %>% arrange(desc(expense_RnD_billion_USD))))
+```
+
+It looks like the US spends way more than anyone else, and China and Japan are also very big on research spendings. I can believe that.
+Now let's see who spends the most on R&D relative to their GDP
+
+```{r}
+knitr::kable(head(countriesRnD %>% arrange(desc(expense_RnD_Percent_of_GDP))))
+```
+Seems like this category has less extreme outlires. South Korea, Israel, Japan, Sweden and Finland spend more than 3% of their GDP on R&D.

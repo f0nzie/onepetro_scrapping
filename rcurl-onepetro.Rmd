@@ -1,0 +1,49 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(XML)
+
+```
+
+```{r}
+library(RCurl)
+
+base_url <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=100&to_year="
+
+```
+
+
+```{r}
+# get the record by the result-item class
+pattern <-'<div class=\"result-item\"'
+links <- strsplit(base_html, pattern)[[1]]
+s <- links[3]
+s
+```
+
+```{r}
+strsplit(s, "data-p13n-")
+```
+
+
+```{r}
+# get by the link
+### 1) First task is to get all of the web links we will need ##
+# base_html<-getURLContent(base_url)[[1]]
+# links <- strsplit(base_html,"a href=")[[1]]
+pattern <-'class=\"result-link'
+links <- strsplit(base_html, pattern)[[1]]
+links[97]
+```
+
+```{r}
+length(links)
+```
+
+```{r}
+
+```
+

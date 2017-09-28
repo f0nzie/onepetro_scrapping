@@ -1,0 +1,48 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+```{r}
+library(dplyr)
+library(rvest)
+library(magrittr)
+library(rsalad)
+```
+
+
+# Retrieve population of countries
+
+The last piece of information I want for the analysis is the population size of each country. There are obviously many sources for such information. I could have used Jenny Bryan's Gapminder package, for example, but a better source I found was from GeoNames since they have the 2-letter code for each country, so it'll be easier to merge with our data.
+
+Once again, I will use Hadley Wickham's rvest package, this time to scrape a table of country populations from GeoNames. I'm still excited by how easy this is!
+
+```{r}
+countryPopUrl <- "http://www.geonames.org/countries/"
+countryPopulationPage <- read_html(countryPopUrl)
+countryPop <-
+  countryPopulationPage %>%
+  html_nodes("table") %>%
+  extract2(2) %>%
+    html_table
+
+knitr::kable(head(countryPop))
+```
+```{r}
+countryPop %<>% 
+    set_colnames(sub("ISO-3166alpha2", "countryCode", colnames(.)) %>%
+                 tolowerfirst) %>%
+  
+    mutate(population = as.numeric((gsub(",", "", population)))) %>%
+  select(countryCode, population)
+knitr::kable(head(countryPop))
+```
+
+# Session info
+```{r}
+sessionInfo()
+```
+

@@ -1,0 +1,483 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#Loading the rvest package
+library(xml2)
+library('rvest')
+
+read_titles <- function(webpage) {
+  
+  # title
+  # .result-link
+  
+  #Using CSS selectors to scrap the rankings section
+  title_data_html <- html_nodes(webpage, '.result-link')
+  
+  # Converting the ranking data to text
+  title_data <- html_text(title_data_html)
+  
+  # data pre-processing
+  title_data <- trimws(gsub("\n", "",title_data))
+  
+  
+  #Let's have a look at the rankings
+  title_data <- data.frame(title_data, stringsAsFactors = FALSE)
+  # write.csv(df, file = "3000-conf.csv")
+  return(title_data)
+}
+
+read_sources <- function(webpage) {
+  # year, paper id, institution, type, year
+  # .result-item-source
+  
+  #Using CSS selectors to scrap the rankings section
+  source_data_html <- html_nodes(webpage, '.result-item-source')
+  
+  #Converting the ranking data to text
+  source_data <- html_text(source_data_html)
+  
+  # pre-processing. split at \n
+    source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),'\n',fixed=TRUE)), 
+                              stringsAsFactors = FALSE)
+    # remove blank columns
+      source_data <- source_data[, 2:5]
+    # rename columns
+      names(source_data) <- c("paper_id", "source", "type", "year")
+    # remove dash from year
+      source_data$year <- gsub("-", "", source_data$year)
+  
+  # Let's have a look at the paper source data
+  source_data
+}
+
+read_author <- function(webpage) {
+  # author #1
+  #Using CSS selectors to scrap the rankings section
+  author1_data_html <- html_nodes(webpage, '.result-item-author:nth-child(1)')
+  
+  #Converting the ranking data to text
+  author1_data <- html_text(author1_data_html)
+  
+  # data pre-processing
+  author1_data <- trimws(gsub("\n", "", author1_data))
+  
+  #Let's have a look at the rankings
+  data.frame(author1_data, stringsAsFactors = FALSE)
+}
+
+
+read_onepetro <- function(url) {
+  webpage <- read_html(url)
+  df_titles  <- read_titles(webpage)
+  df_sources <- read_sources(webpage)
+  df_author  <- read_author(webpage)
+  cbind(df_titles, df_sources, df_author)
+}
+
+p1 <- read_onepetro("1000_conference.html")
+p2 <- read_onepetro("2000_conference.html")
+p3 <- read_onepetro("3000_conference.html")
+
+nn_papers <- rbind(p1, p2, p3)
+nn_papers
+```
+
+
+```{r rows.print = 50}
+library(dplyr)
+
+nn_papers %>%
+  filter(grepl("neural", tolower(title_data)))
+
+```
+
+```{r rows.print=10}
+nn_papers_labeled <- nn_papers %>%
+  mutate(discipline = 
+           ifelse(grepl("fracture|acid|surfactant|stimulation|foam|Frackability|fracture|frack|frac|Refracturing|fracturing|grouting", nn_papers$title_data, ignore.case=TRUE), "stimulation" ,
+                             
+            ifelse(grepl("rig|bit|drilling|circulation|ROP|underbalance|placement|boring|pipe|underwater|Penetration|tidal|cuttings|moored|mooring|well cost|cement|Geosteering|steering|packer|ship|vessel|LWD|Instability|offshore|Positioning|ROV|UBD|floating|offshore|float|trajectory|navigation|jacket|tracking|piles|deepwater", nn_papers$title_data, ignore.case=TRUE), "drilling" , 
+                             
+            ifelse(grepl("reservoir|simulation|waterflooding|hydrocarbon|permeability|PVT|recovery|formation|steam|fluid|testing|EOR|proxy|history matching|spot|waterflood|Infill|asset|Well Management|resource|field development|SAGD|mature|spacing|play|transient|saturation|IOR|coalbed|forecasting|heavy oil|well test|well-test|pressure|dewpoint|shale|shallow|reserves|groundwater|porosity|overpressure|evaluation|treatment|pore|decline curve|grid|basin|bubble point|Redevelopment|radial|water cut|Cricondenbar|water control|gas control", nn_papers$title_data, ignore.case=TRUE), "reservoir" , 
+                             
+            ifelse(grepl("wax|corrosion|chemistry|chemical|polymer|viscosity|biofilm|hydrate|sour", nn_papers$title_data, ignore.case = TRUE), "flow assur" , 
+                             
+            ifelse(grepl("geophysical|reflection|wave|seismic|geophysics|magnetic|Preprocessing|inversion|attenuation|picking|Equalization|Discontinuities|Decomposition|array|harmonic|amplitude|spectral|Microseismogram|travel-time|4D|spectra|tunneling|geostress|reflectivity|Polarization", nn_papers$title_data, ignore.case = TRUE), "geophysics" , 
+                             
+            ifelse(grepl("log|logging|3D Porosity|Resistivity|imaging|image|imagery|radioactive|neutron|Tomography| PHI-K", nn_papers$title_data, ignore.case = TRUE), "logging" , 
+                             
+            ifelse(grepl("production|IPR|VLP|lift|completion|performance|casing|tubing|multiphase|pumping|buckling|mechanistic|intervention|well control|Unloading|phase|gas load|Liquefaction|packers|injection|Submersible|Centrifugal|sand control|sand|well integrity|gravel-pack|gravel pack|Correlations|beam pump|rod pump|flow rate|multi-lateral|assembly|tubular|temperature", nn_papers$title_data, ignore.case = TRUE), "production" , 
+                             
+            ifelse(grepl("pipeline|surface|flowline|compressor|welding|wellsite|accident|HSE|unsafe|sampling|refinery|vibration|safety|environmental|environment|export|tank|Hydrotreaters|line|storm surge|economic|HYDROTREATING|catalyst|ordinance|health|human|price|tunnel|structures|emission|Reclamation|Investment", nn_papers$title_data, ignore.case = TRUE), "surface" , 
+                             
+            ifelse(grepl("petrophysics|rock|grain|time domain|Deconvolution", nn_papers$title_data, ignore.case = TRUE), "petrophysics" , 
+                             
+            ifelse(grepl("deposition|ore|sediment|geological|mining|ground|geomaterial|horizon|Lithofacies|fault|geo-|geology|Turbidites|gis|fills|rift|limestone|atmospheric|karst|Geomodel|granite|Compressive|facies|Phanerozoic|tectonics|sedimentation|flank", nn_papers$title_data, ignore.case = TRUE), "geology" ,                              
+                             
+            ifelse(grepl("artificial intelligence|digital|real-time|real time|intelligent|cognitive|surveillance|modeling|modelling|Permanent Downhole Gauge|data driven|data-driven|data|expert system|Asset Integrity|data mining|analytics|clustering|genetic|algorithm|data|computing|analytics|prediction|transducers|workflow|control system|benchmarking|optimization", nn_papers$title_data, ignore.case = TRUE), "digital|wireless|AVO|pattern|Quantization" , 
+                             "other")
+            ))))))))))) %>%
+  select(year, source, paper_id, discipline, title_data, type, author1_data)
+
+nn_papers_labeled
+```
+
+```{r}
+write.csv(nn_papers_labeled, file = "nn_papers.csv", row.names = FALSE)
+```
+
+```{r}
+sort(table(nn_papers_labeled$discipline))
+```
+
+
+```{r}
+table(nn_papers_labeled$source)
+```
+
+
+```{r}
+sort(table(nn_papers_labeled$year))
+```
+
+
+
+```{r}
+unique(nn_papers_labeled$source)
+```
+
+
+```{r}
+ifelse(grepl("fracture|acid", nn_papers$title_data, ignore.case = TRUE), "stimulation" , "")
+```
+
+
+
+```{r}
+nn_papers %>%
+  mutate(discipline = ifelse(any(grepl(c("bit", "drilling"), tolower(title_data))), "drilling", 
+                      ifelse(grepl(c("fracture", "acid"), tolower(title_data)), "stimulation" , "")
+                      ))
+    
+```
+
+
+```{r}
+tolower(nn_papers$title_data) contains()
+```
+
+
+```{r}
+grep(c("bit", "drilling"), tolower(nn_papers$title_data), value = TRUE)
+```
+
+
+
+
+
+## read html file, section by section, providing the file name per section
+
+```{r}
+read_titles <- function(url) {
+  webpage <- read_html(url)
+  
+  # title
+  # .result-link
+  
+  #Using CSS selectors to scrap the rankings section
+  title_data_html <- html_nodes(webpage, '.result-link')
+  
+  # Converting the ranking data to text
+  title_data <- html_text(title_data_html)
+  
+  # data pre-processing
+  title_data <- trimws(gsub("\n", "",title_data))
+  
+  
+  #Let's have a look at the rankings
+  title_data <- data.frame(title_data, stringsAsFactors = FALSE)
+  # write.csv(df, file = "3000-conf.csv")
+  return(title_data)
+}
+
+read_sources <- function(url) {
+  # year, paper id, institution, type, year
+  # .result-item-source
+  webpage <- read_html(url)
+  
+  #Using CSS selectors to scrap the rankings section
+  source_data_html <- html_nodes(webpage, '.result-item-source')
+  
+  #Converting the ranking data to text
+  source_data <- html_text(source_data_html)
+  
+  # pre-processing. split at \n
+    source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),'\n',fixed=TRUE)), 
+                              stringsAsFactors = FALSE)
+    # remove blank columns
+      source_data <- source_data[, 2:5]
+    # rename columns
+      names(source_data) <- c("paper_id", "source", "type", "year")
+    # remove dash from year
+      source_data$year <- gsub("-", "", source_data$year)
+  
+  # Let's have a look at the paper source data
+  source_data
+}
+
+read_author <- function(url) {
+  webpage <- read_html(url)
+  # author #1
+  #Using CSS selectors to scrap the rankings section
+  author1_data_html <- html_nodes(webpage, '.result-item-author:nth-child(1)')
+  
+  #Converting the ranking data to text
+  author1_data <- html_text(author1_data_html)
+  
+  # data pre-processing
+  author1_data <- trimws(gsub("\n", "", author1_data))
+  
+  #Let's have a look at the rankings
+  data.frame(author1_data, stringsAsFactors = FALSE)
+}
+
+
+
+read_titles("1000_conference.html")
+read_sources("1000_conference.html")
+read_author("1000_conference.html")
+```
+
+
+```{r}
+read_titles("1000_conference.html")
+read_sources("1000_conference.html")
+read_author("1000_conference.html")
+```
+
+
+
+
+
+
+
+
+
+## sandbox
+
+
+
+```{r}
+url <- "https://www.onepetro.org/search?q=smartwell&peer_reviewed=&published_between=&from_year=&to_year="
+
+webpage1 <- read_html(url)
+```
+
+
+```{r}
+webpage1
+```
+
+```{r}
+#Specifying the url for desired website to be scrapped
+url <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=10&to_year="
+
+#Reading the HTML code from the website
+webpage2 <- read_html(url)
+webpage2
+```
+
+
+```{r}
+#Loading the rvest package
+library('rvest')
+
+#Specifying the url for desired website to be scrapped
+url <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=100&to_year="
+
+#Reading the HTML code from the website
+webpage1 <- read_html(url)
+webpage1
+xml2::write_html(webpage1, file = "100rows.html")
+```
+
+```{r}
+# 
+# search for neural network has returned 2,918 results. 
+url <- "https://www.onepetro.org/search?q=neural+network&peer_reviewed=&published_between=&from_year=&to_year=&sort=&rows=1000&dc_issued_year=&s2_parent_title=&dc_publisher_facet=&dc_type=conference-paper"
+
+webpage1 <- read_html(url)
+xml2::write_html(webpage1, file = "1000_conference.html")
+
+```
+
+
+```{r}
+# 1000 - 2000
+url <- "https://www.onepetro.org/search?start=1000&q=neural+network&peer_reviewed=&published_between=&from_year=&to_year=&sort=&rows=1000&dc_issued_year=&s2_parent_title=&dc_publisher_facet=&dc_type=conference-paper"
+
+webpage1 <- read_html(url)
+xml2::write_html(webpage1, file = "2000_conference.html")
+```
+
+
+```{r}
+# 2000 - 3000
+url <- "https://www.onepetro.org/search?start=2000&q=neural+network&peer_reviewed=&published_between=&from_year=&to_year=&sort=&rows=1000&dc_issued_year=&s2_parent_title=&dc_publisher_facet=&dc_type=conference-paper"
+
+webpage1 <- read_html(url)
+xml2::write_html(webpage1, file = "3000_conference.html")
+```
+
+
+```{r}
+#Specifying the url for desired website to be scrapped
+url2 <- "https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=3000&to_year="
+
+#Reading the HTML code from the website
+webpage2 <- read_html(url2)
+xml2::write_html(webpage2, file = "0to3000.html")
+```
+
+
+```{r}
+#Specifying the url for desired website to be scrapped
+url2 <- "https://www.onepetro.org/search?start=2501&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=1000&to_year="
+
+#Reading the HTML code from the website
+webpage2 <- read_html(url2)
+xml2::write_html(webpage2, file = "2501to3500.html")
+```
+
+```{r}
+webpage <- read_html("1501to2500.html")
+```
+
+
+```{r}
+# append al html pages that were scrapped separately]
+acumm_page <- read_html("0to1000.html")
+xml2::write_html(acumm_page, file = "accum_page.html")
+
+# file.append("accum_page.html", "0to1000.html")
+
+file.append("accum_page.html", "1001to1500.html")
+
+file.append("accum_page.html", "1501to2500.html")
+
+file.append("accum_page.html", "2501to3500.html")
+```
+
+```{r}
+# webpage <- read_html("accum_page.html")
+
+# webpage <- read_html("1501to2500.html")
+# webpage <- read_html("0to1000.html")
+# webpage <- read_html("2501to3500.html")
+
+```
+
+
+```{r rows.print=10}
+webpage <- read_html("3000_conference.html")
+
+
+# title
+# .result-link
+
+#Using CSS selectors to scrap the rankings section
+title_data_html <- html_nodes(webpage, '.result-link')
+
+#Converting the ranking data to text
+title_data <- html_text(title_data_html)
+
+# data pre-processing
+title_data <- trimws(gsub("\n", "",title_data))
+
+
+#Let's have a look at the rankings
+df <- data.frame(title_data, stringsAsFactors = FALSE)
+write.csv(df, file = "3000-conf.csv")
+```
+
+
+
+```{r rows.print=100}
+# year, paper id, institution, type, year
+# .result-item-source
+
+#Using CSS selectors to scrap the rankings section
+source_data_html <- html_nodes(webpage, '.result-item-source')
+
+#Converting the ranking data to text
+source_data <- html_text(source_data_html)
+
+# pre-processing. split at \n
+  source_data <- data.frame(do.call('rbind', strsplit(as.character(source_data),'\n',fixed=TRUE)), 
+                            stringsAsFactors = FALSE)
+  # remove blank columns
+    source_data <- source_data[, 2:5]
+  # rename columns
+    names(source_data) <- c("paper_id", "source", "type", "year")
+  # remove dash from year
+    source_data$year <- gsub("-", "", source_data$year)
+
+# Let's have a look at the paper source data
+source_data
+```
+
+
+```{r}
+webpage <- read_html("3000_conference.html")
+```
+
+
+```{r}
+# author #1
+#Using CSS selectors to scrap the rankings section
+author1_data_html <- html_nodes(webpage, '.result-item-author:nth-child(1)')
+
+#Converting the ranking data to text
+author1_data <- html_text(author1_data_html)
+
+# data pre-processing
+author1_data <- trimws(gsub("\n", "", author1_data))
+
+#Let's have a look at the rankings
+data.frame(author1_data)
+```
+
+```{r}
+# author #2
+#Using CSS selectors to scrap the rankings section
+author2_data_html <- html_nodes(webpage, '.result-item-author:nth-child(2)')
+
+#Converting the ranking data to text
+author2_data <- html_text(author2_data_html)
+
+# data pre-processing
+author2_data <- trimws(gsub("\n", "", author2_data))
+
+#Let's have a look at the rankings
+data.frame(author2_data)
+```
+
+
+
+```{r}
+# author #3
+#Using CSS selectors to scrap the rankings section
+author3_data_html <- html_nodes(webpage, '.result-item-author:nth-child(3)')
+
+#Converting the ranking data to text
+author3_data <- html_text(author3_data_html)
+
+# data pre-processing
+author3_data <- trimws(gsub("\n", "", author3_data))
+
+#Let's have a look at the rankings
+data.frame(author3_data)
+```

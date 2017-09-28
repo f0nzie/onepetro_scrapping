@@ -1,0 +1,12 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# validate tat year is between 1900 and 2099
+pattern <- "(?:(?:19|20)[0-9]{2})"
+x <- 1901
+grepl(pattern, x, perl = TRUE)
+```
+

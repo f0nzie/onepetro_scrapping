@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+my_url <- make_search_url(query = "neural network", 
+                          from_year = 1970, 
+                          to_year   = 1980, 
+                          how = "all")
+my_url
+get_papers_count(my_url)
+```
+
+```{r}
+
+my_url <- make_search_url(query = "neural network", 
+                          from_year = 1980, 
+                          to_year   = 1990, 
+                          how = "all")
+get_papers_count(my_url)
+```
+
+```{r}
+my_url <- make_search_url(query = "neural network", 
+                          from_year = 1990, 
+                          to_year   = 2000, 
+                          how = "all")
+get_papers_count(my_url)
+```

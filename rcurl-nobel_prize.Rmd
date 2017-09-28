@@ -1,0 +1,50 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Retrieve number of nobel laureates per country
+
+
+Next we need to get data about how many nobel laureates each country has. The official site of the Nobel Prize has a RESTful API available here that will get us the info we want. Their API is very basic and you can see some of my complaints about it at the bottom of this report, but it worked.
+
+The nice thing about this API is that it does not require any registration or special settings - anyone can access it by simply performing an HTTP GET request.
+
+## Mandatory sidetrack: building the API call for Nobel Prize API
+
+In order to use the API, we need to have a good way of building the URLs to make the API calls. The following two functions are very simple:
+buildQueryString simply converts a list of parameters (key=value pairs) to a query string that can be used in an API call (for example, list("a" = "b", "A" = "B") gets coded as a=b&A=B).
+buildNobelPrizeApi returns a URL that can be used to query the Nobel Prize API, given a method and a desired output format.
+
+```{r}
+buildQueryString <- function(params = list()) {
+    queryString <- paste(names(params), as.character(params),
+                                             sep = "=", collapse = "&")
+    queryString
+}
+
+nobelApiBase <- "http://api.nobelprize.org"
+buildNobelPrizeApi <- function(method, format, params = list(), version = "v1") {
+    apiCall <- paste0(nobelApiBase, "/", version, "/", method, ".",
+                                        format, "?", buildQueryString(params))
+    apiCall
+}
+```
+
+## Back to business: get list of coutries supported by Nobel Prize API
+
+In order to be able to query for laureates by country using this API and merge it with the table we scraped earlier from Wikipedia, we need to make sure we have a mapping of countries that is consistent between the two sources. The Nobel Prize API has a method that simply returns a list of countries it supports with the country name and 2-letter country code, so let's get that list first. The API supports both CSV and JSON return formats, and I will choose CSV since it's more compact and is more native to R.
+
+
+```{r}
+apiCall <- buildNobelPrizeApi("country", "csv")
+nobelPrizeCountriesResponse <- RCurl::getURL(apiCall)
+nobelPrizeCountries <- read.table(
+  text = nobelPrizeCountriesResponse, 
+  header = TRUE, row.names = NULL, 
+  sep = ",", 
+  quote = "\"")
+
+knitr::kable(head(nobelPrizeCountries))
+```
+

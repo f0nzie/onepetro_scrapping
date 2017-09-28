@@ -1,0 +1,121 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# test create_url for smartwell query
+source('D:/Dropbox/R/web_scraping/R/url.R')
+my_url <- create_url(query = "smartwell")
+my_url
+smartwell <- send_url(my_url)
+# xml2::write_html(webpage, file = "smartwell.html")
+
+results <- smartwell %>%
+  html_nodes("h2") %>%
+  html_text()
+
+results <- results[1]
+results
+# results2 <- gsub("results.", "", results)
+# results2 <- gsub("Search results: Your search for smartwell has returned", "", results2)
+# results2
+as.numeric(gsub("[^\\d]+", "", results, perl=TRUE))
+```
+
+
+```{r}
+# with file url.R sourced, create URL for query=completions
+my_url <- create_url(query = "completions")
+completions <- send_url(my_url)
+
+papers <- completions %>%
+    html_nodes("h2") %>%
+    html_text()
+
+# extract the numeric part only
+as.numeric(gsub("[^\\d]+", "", papers[1], perl=TRUE))
+```
+
+
+```{r}
+# test function get_papers_count() with how = "all"
+# test that *neural* and *network* both appear in the papers
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+my_url <- create_url(query = "neural network", how = "all")
+my_url
+get_papers_count(my_url)
+```
+
+```{r}
+# test function get_papers_count() with how = "any"
+# test that any of the words *neural* and *network* appear in the papers
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+my_url <- create_url(query = "neural network", how = "any")
+my_url
+get_papers_count(my_url)
+```
+
+
+
+```{r}
+query <- "neural network"
+session <- html_session("https://www.onepetro.org/")
+session
+form <- html_form(session)[[3]]
+form
+```
+
+```{r}
+form <- set_values(form, q = query)
+```
+
+
+## send request for number of papers
+
+```{r}
+# send request for neural networks
+# the function will automatically join the words with the plus sign
+source('D:/Dropbox/R/web_scraping/R/url.R')
+
+my_url <- create_url(query = "neural networks")
+result <- send_url(my_url)
+my_url
+
+papers <- result %>%
+    html_nodes("h2") %>%
+    html_text()
+
+# extract the numeric part only
+as.numeric(gsub("[^\\d]+", "", papers[1], perl=TRUE))
+```
+
+https://github.com/hadley/rvest
+
+```{r}
+library(rvest)
+lego_movie <- read_html("http://www.imdb.com/title/tt1490017/")
+
+rating <- lego_movie %>% 
+  html_nodes("strong span") %>%     # [1] <span itemprop="ratingValue">7.8</span>
+  html_text()  %>%                 # [1] "7.8"
+  as.numeric()
+rating
+```
+
+```{r}
+cast <- lego_movie %>%
+  html_nodes("#titleCast .itemprop span") %>%
+  html_text()
+cast
+```
+
+```{r}
+poster <- lego_movie %>%
+  html_nodes(".poster img") %>%
+  html_attr("src")
+poster
+```
+

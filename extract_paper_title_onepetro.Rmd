@@ -1,0 +1,99 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# thepage = readLines("https://www.onepetro.org/search?start=0&q=neural+networks&from_year=&peer_reviewed=&published_between=&rows=100&to_year=")
+
+thepage[1820:1899]
+```
+
+```{r}
+# class=\"result-link\">"
+expression = '(?<=result-link).+(?=)'
+regmatches(thepage, regexpr(expression, thepage, perl = TRUE))
+```
+
+```{r}
+
+
+ mypattern <- "data-p13n-title="
+#mypattern <- 'data-p13n-title=\"([^<]*)\"></div>'
+
+datalines = grep(mypattern, thepage[500:length(thepage)], value=TRUE)
+# print(datalines)
+getexpr = function(s,g) substring(s, g, g+attr(g, 'match.length')-1)
+gg = gregexpr(mypattern, datalines)
+matches = mapply(getexpr, datalines, gg)
+result = gsub(mypattern, '\\1', matches)
+print(result[1:5])
+```
+
+
+```{r}
+gsub(mypattern, '\\1', matches)[2]
+```
+
+
+
+```{r}
+gg[[99]]
+```
+
+```{r}
+matches = mapply(getexpr, datalines, gg)
+
+```
+
+
+```{r}
+# mypattern <- "data-p13n-title="
+mypattern <- 'data-p13n-title=\"([^<]*)\"></div>'
+
+datalines = grep(mypattern, thepage[500:length(thepage)], value=TRUE)
+datalines[95:99]
+```
+
+```{r}
+ # class=\"result-link\">"
+ # [7] "                  Deconvolution Using Neural Networks"                                                                                                                                                                                                          
+ # [8] "          </a>"  
+ # 
+mypattern <- 'class=\"result-link\">([^<]*)</a>'
+
+datalines = grep(mypattern, thepage[500:length(thepage)], value=TRUE)
+datalines
+```
+
+
+
+```{r}
+# extract the paper
+expression = '(?<=conference-paper/).+(?=\\?)'
+regmatches(datalines, regexpr(expression, datalines, perl = TRUE))
+```
+
+
+
+
+```{r}
+# extract the title
+expression = '(?<=title=").+(?=\\"></div>)'
+regmatches(datalines, regexpr(expression, datalines, perl = TRUE))
+```
+
+
+```{r}
+x <- scan(what= character(), 
+text = "[-0.2122,-0.1213)
+[-0.2750,-0.2122)
+[-0.1213,-0.0222)
+[-0.1213,-0.0222)")
+
+expression = "(?<=\\[).+(?=\\))"
+replace = ""
+
+gsub(pattern = expression, replacement = replace, x, perl = TRUE)
+regmatches(x, regexpr("(?<=\\[).+(?=\\))", x, perl = TRUE))
+```
