@@ -63,9 +63,10 @@ result %>%
 ```
 
 ```{r}
+# obtaining the name of the variable for a class
 result %>%
-    html_nodes(".facets-form div.filter-label")
-    
+    html_nodes(".facets-form div.filter-label") %>%
+    html_text()
     
 ```
 
