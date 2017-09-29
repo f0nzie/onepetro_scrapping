@@ -7,5 +7,26 @@ output: html_notebook
 source('./R/url.R')
 
 my_url <- make_search_url(query = "unconventional")
+
+onepetro_allpages_to_dataframe(my_url)
 ```
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "heat transfer", how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "nanodarcy", how = "any")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+
 

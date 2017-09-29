@@ -174,16 +174,55 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuXG5teV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gXCJ1bmNvbnZlbnRpb25hbFwiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwidW5jb252ZW50aW9uYWxcIilcbm9uZXBldHJvX2FsbHBhZ2VzX3RvX2RhdGFmcmFtZShteV91cmwpXG5gYGAifQ== -->
 <pre class="r"><code>source('./R/url.R')
-
-my_url &lt;- make_search_url(query = &quot;unconventional&quot;)</code></pre>
+my_url &lt;- make_search_url(query = &quot;unconventional&quot;)
+onepetro_allpages_to_dataframe(my_url)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHBhcGVyc1xuWzFdIDE2MzU4XG5cbiRwYWdlczEwMDBcblsxXSAxNi4zNThcbiJ9 -->
+<pre><code>$papers
+[1] 16358
+
+$pages1000
+[1] 16.358</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwiaGVhdCB0cmFuc2ZlclwiLCBob3cgPSBcImFsbFwiKVxub25lcGV0cm9fYWxscGFnZXNfdG9fZGF0YWZyYW1lKG15X3VybClcbmBgYCJ9 -->
+<pre class="r"><code>source('./R/url.R')
+my_url &lt;- make_search_url(query = &quot;heat transfer&quot;, how = &quot;all&quot;)
+onepetro_allpages_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHBhcGVyc1xuWzFdIDc4NThcblxuJHBhZ2VzMTAwMFxuWzFdIDcuODU4XG4ifQ== -->
+<pre><code>$papers
+[1] 7858
+
+$pages1000
+[1] 7.858</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmFub2RhcmN5XCIsIGhvdyA9IFwiYW55XCIpXG5vbmVwZXRyb19hbGxwYWdlc190b19kYXRhZnJhbWUobXlfdXJsKVxuYGBgIn0= -->
+<pre class="r"><code>source('./R/url.R')
+my_url &lt;- make_search_url(query = &quot;nanodarcy&quot;, how = &quot;any&quot;)
+onepetro_allpages_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHBhcGVyc1xuWzFdIDQ5NlxuXG4kcGFnZXMxMDAwXG5bMV0gMVxuIn0= -->
+<pre><code>$papers
+[1] 496
+
+$pages1000
+[1] 1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJ1bmNvbnZlbnRpb25hbCIpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJ1bmNvbnZlbnRpb25hbCIpDQoNCm9uZXBldHJvX2FsbHBhZ2VzX3RvX2RhdGFmcmFtZShteV91cmwpDQpgYGANCg0KYGBge3J9DQpzb3VyY2UoJy4vUi91cmwuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAiaGVhdCB0cmFuc2ZlciIsIGhvdyA9ICJhbGwiKQ0KDQpvbmVwZXRyb19hbGxwYWdlc190b19kYXRhZnJhbWUobXlfdXJsKQ0KYGBgDQoNCg0KYGBge3J9DQpzb3VyY2UoJy4vUi91cmwuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAibmFub2RhcmN5IiwgaG93ID0gImFueSIpDQoNCm9uZXBldHJvX2FsbHBhZ2VzX3RvX2RhdGFmcmFtZShteV91cmwpDQpgYGANCg0KDQoNCg==</div>
 
 
 

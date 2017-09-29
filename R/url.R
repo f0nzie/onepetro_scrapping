@@ -225,19 +225,26 @@ onepetro_page_to_dataframe <- function(url) {
         stop("Dataframe sizes different")  # otherwise, stop
 }
 
+
+
+
+
 onepetro_allpages_to_dataframe <- function(url) {
     # webpage <- read_html(url)
     papers_count <- get_papers_count(url)
     if (papers_count > 1000) {
         num_pages <- papers_count / 1000
+    } else {
+        num_pages = 1
     }
-    list(papers = papers_count, pages1000 = num_pages)
+    
+    info <- list(papers = papers_count, pages1000 = num_pages)
     
     for (page in seq_len(num_pages)) {
         # webpage <- read_html(url)
         
     }
-    url
+    info
 }
 
 
