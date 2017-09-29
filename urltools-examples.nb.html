@@ -212,8 +212,86 @@ parameters(url)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuKHVybF9wYXJzZSh1cmwpJHBhcmFtZXRlcilcbmBgYCJ9 -->
+<pre class="r"><code>(url_parse(url)$parameter)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwicT1cXFwiaGVhdCt0cmFuc2ZlclxcXCImcGVlcl9yZXZpZXdlZD0mcHVibGlzaGVkX2JldHdlZW49JmZyb21feWVhcj0mdG9feWVhcj0mZGNfdHlwZT1cIlxuIn0= -->
+<pre><code>[1] &quot;q=\&quot;heat+transfer\&quot;&amp;peer_reviewed=&amp;published_between=&amp;from_year=&amp;to_year=&amp;dc_type=&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1fZ2V0KHVybCwgYyhcInFcIikpXG5gYGAifQ== -->
+<pre class="r"><code>param_get(url, c(&quot;q&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVBRUTZDTUJCY0NtaG9vcEw0QTY2R0pwcjRBMS9naVd1RklrUnNzWlRvNjlGQ2FDUjdhYnZUbWRtWjZ5VTcwWXdDQUFFLzhJRDQ5aGtRZTNnUVFEVGVId0IvUHdFQThlSmpsMVNDbTRQUlhIYWwwQW5TaFpJL1JZYzAzZ3V4SXEzZXpERTM4eFlQVytVTjc3QVZMYmpock5SV2E2Y0JTZGFxTmJXU1ZrVEc3Q0hPb1JFUTkzSk1VYVI1MWN0SGVqeVBHLzV4bHRGd1RQS2R2Y0xaYXlYa3ZaYkNoVy80VFRUenNMVjFwN2FzMWJVMHJvcEZPMmFVNFk1SGM5VTRaQ29Id3crdFJDQzNxZ0VBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["q"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"\"heat+transfer\"","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1fZ2V0KHVybCwgYyhcImRjX3R5cGVcIikpXG5gYGAifQ== -->
+<pre class="r"><code>param_get(url, c(&quot;dc_type&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVBRUTZDTUJEY0ZwRFFSRVBpT3lEUnhCLzRBay9jVElXcVJHeEpLVkUvajdha2pXUXZiWGM2TXp0ek9sWjdWakVBb0JERkJHaGtuekcxQjRFWU1uZS9BYUx0REFEa2l3OU1UQ1IvaWdHUjBxWSttMDh2RURmVDZsVUcvdHFiRTJ4WWQzekFocXpoaHBkWGJiVjJtcEFrVmIxcGxiUWk2aUluU0V3MEF2SlJ1aFJOVWQ5SCtTaDJCN2ZoSDJjWkRjZWtYKytWZUsrVmtMZFdpaEMrNHhmUitXRmo2ODV0eTE2MzBvUXFGaDFLb3d3UFBGYXJMaUJ6T1poK1YzUnF2NkVCQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["dc_type"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1fZ2V0KHVybCwgYyhcInFcIiwgXCJkY190eXBlXCIsIFwidG9feWVhclwiLCBcInJvd3NcIiwgXCJzdGFydFwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>param_get(url, c(&quot;q&quot;, &quot;dc_type&quot;, &quot;to_year&quot;, &quot;rows&quot;, &quot;start&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuVlFVVTdETUF4MTA0YXBsWUJKM0dDL2FKV0d4QTA0QVYvN20weWJzWW91S1lrbjJPVUg3b2hoaEJFcGlWOXN4Kys5eDRmbFhiV3NBRUJCWG1TZ2NnNEx4VWNHQlpUai9RNlEzM0NnZVU5UEV0ZXpqVUc2Slk4MnJJMmZKV240RndPVUg3eis0bDl6dGNXdENiRklDNW5YR0V6YVprWDd3UWdrdDlvYjlCRVczcjBGK1NjUWVrbytMN21nbGdHWGtVV1dNbWg2RENHUlViVklXSzg5OXpJNkpDMFROMURuTERlcGM1WmxQbm1ZN3V6SW9wMDNtNTE5bVMvdXh3ay9kRTZwZmNmNmE2WVNBOFdiQzJPZk95dU82QjZmVEIvQkZjczlxcTBIMzFrU0thTkxOVGxDcWFzYTE4dkxVUndjUGdFTk5kdWhJUUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["q"],"name":[1],"type":["chr"],"align":["left"]},{"label":["dc_type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["to_year"],"name":[3],"type":["chr"],"align":["left"]},{"label":["rows"],"name":[4],"type":["chr"],"align":["left"]},{"label":["start"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"\"heat+transfer\"","2":"","3":"","4":"NA","5":"NA","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1fZ2V0KHVybCwgYyhcInFcIiwgXCJkY190eXBlXCIsIFwidG9feWVhclwiLCBcInJvd3NcIiwgXCJzdGFydFwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>param_get(url, c(&quot;q&quot;, &quot;dc_type&quot;, &quot;to_year&quot;, &quot;rows&quot;, &quot;start&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuVlF3VTdETUF4MTA0YXBsWUJKL01HdWFKWEdnUy9nQ3pqdE5wazJZeFZkVWhKUHNKOGZ1Q09HRVVha0pINnhIYi8zSGgrV2Q5V3lBZ0FGZVpHQnlqa3NGQjhaRkZDTzl6dEFmc09CNWowOVNWelBOZ2JwbGp6YXNEWitscVRoWHd4UWZ2RDZpMy9OMVJhM0pzUWlMV1JlWXpCcG14WHRCeU9RM0dwdjBFZFllUGNXNUo5QTZDbjV2T1NDV2daY1JoWlp5cURwTVlSRVJ0VWlZYjMyM012b2tMUk0zRUNkczl5a3psbVcrZVJodXJNamkzYmViSGIyWmI2NEh5ZjgwRG1sOWgzcnI1bEtEQlJ2TG94OTdxdzRvbnQ4TW4wRVZ5ejNxTFllZkdkSnBJd3UxZVFJcGE1cVhDOHZSM0Z3K0FSclV6a0VJUUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["q"],"name":[1],"type":["chr"],"align":["left"]},{"label":["dc_type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["to_year"],"name":[3],"type":["chr"],"align":["left"]},{"label":["rows"],"name":[4],"type":["chr"],"align":["left"]},{"label":["start"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"\"heat+transfer\"","2":"","3":"","4":"NA","5":"NA","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFyYW1fc2V0KHVybCwgXCJyb3dzXCIsIDEwMClcbmBgYCJ9 -->
+<pre class="r"><code>param_set(url, &quot;rows&quot;, 100)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaHR0cHM6Ly93d3cub25lcGV0cm8ub3JnL3NlYXJjaD9zdGFydD0wJnE9bmV1cmFsK25ldHdvcmtzJmZyb21feWVhcj0mcGVlcl9yZXZpZXdlZD0mcHVibGlzaGVkX2JldHdlZW49JnJvd3M9MTAwJnRvX3llYXI9XCJcbiJ9 -->
+<pre><code>[1] &quot;https://www.onepetro.org/search?start=0&amp;q=neural+networks&amp;from_year=&amp;peer_reviewed=&amp;published_between=&amp;rows=100&amp;to_year=&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJhZ21lbnQodXJsKVxuYGBgIn0= -->
+<pre class="r"><code>fragment(url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BXG4ifQ== -->
+<pre><code>[1] NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodXJsdG9vbHMpDQojR2V0IGEgY29tcG9uZW50DQpleGFtcGxlX3VybCA8LSAiaHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9BYXJvbl9IYWxmYWtlcj9kZWJ1Zz10cnVlIg0KcGFyYW1ldGVycyhleGFtcGxlX3VybCkNCiNbMV0gImRlYnVnPXRydWUiDQojU2V0IGEgY29tcG9uZW50DQpwYXJhbWV0ZXJzKGV4YW1wbGVfdXJsKSA8LSAiZGVidWc9ZmFsc2UiDQoNCmBgYA0KDQpgYGB7cn0NCnVybCA8LSAiaHR0cHM6Ly93d3cub25lcGV0cm8ub3JnL3NlYXJjaD9xPVwiaGVhdCt0cmFuc2ZlclwiJnBlZXJfcmV2aWV3ZWQ9JnB1Ymxpc2hlZF9iZXR3ZWVuPSZmcm9tX3llYXI9JnRvX3llYXI9JmRjX3R5cGU9Ig0KcGFyYW1ldGVycyh1cmwpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodXJsdG9vbHMpDQojR2V0IGEgY29tcG9uZW50DQpleGFtcGxlX3VybCA8LSAiaHR0cDovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9BYXJvbl9IYWxmYWtlcj9kZWJ1Zz10cnVlIg0KcGFyYW1ldGVycyhleGFtcGxlX3VybCkNCiNbMV0gImRlYnVnPXRydWUiDQojU2V0IGEgY29tcG9uZW50DQpwYXJhbWV0ZXJzKGV4YW1wbGVfdXJsKSA8LSAiZGVidWc9ZmFsc2UiDQoNCmBgYA0KDQpgYGB7cn0NCnVybCA8LSAiaHR0cHM6Ly93d3cub25lcGV0cm8ub3JnL3NlYXJjaD9xPVwiaGVhdCt0cmFuc2ZlclwiJnBlZXJfcmV2aWV3ZWQ9JnB1Ymxpc2hlZF9iZXR3ZWVuPSZmcm9tX3llYXI9JnRvX3llYXI9JmRjX3R5cGU9Ig0KcGFyYW1ldGVycyh1cmwpDQpgYGANCg0KYGBge3J9DQoodXJsX3BhcnNlKHVybCkkcGFyYW1ldGVyKQ0KYGBgDQoNCmBgYHtyfQ0KcGFyYW1fZ2V0KHVybCwgYygicSIpKQ0KcGFyYW1fZ2V0KHVybCwgYygiZGNfdHlwZSIpKQ0KDQpgYGANCg0KYGBge3J9DQpwYXJhbV9nZXQodXJsLCBjKCJxIiwgImRjX3R5cGUiLCAidG9feWVhciIsICJyb3dzIiwgInN0YXJ0IikpDQpgYGANCg0KYGBge3J9DQpwYXJhbV9zZXQodXJsLCAicm93cyIsIDEwMCkNCmBgYA0KDQoNCmBgYHtyfQ0KZnJhZ21lbnQodXJsKQ0KYGBgDQoNCg==</div>
 
 
 

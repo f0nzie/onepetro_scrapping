@@ -142,7 +142,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("test_from_to_years.Rmd");
+  window.initializeSourceEmbed("test_failing.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -174,133 +174,55 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuYGBgIn0= -->
-<pre class="r"><code>source('./R/url.R')</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmYWlsc1xuIyBzcGVjaWZ5IGRvY3VtZW50IHR5cGUgPSBcImNvbmZlcmVuY2UtcGFwZXJcIiwgcm93cyA9IDEwMDBcbnNvdXJjZSgnLi9SL3VybC5SJylcbm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSBcInVuY29udmVudGlvbmFsXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgIHJvd3MgPSAxMDAwKVxuYGBgIn0= -->
+<pre class="r"><code># fails
+# specify document type = &quot;conference-paper&quot;, rows = 1000
+source('./R/url.R')
+my_url &lt;- make_search_url(query = &quot;unconventional&quot;,
+                          rows = 1000)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bWwyXG4ifQ== -->
-<pre><code>Loading required package: xml2</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiY2xvc2luZyB1bnVzZWQgY29ubmVjdGlvbiAzIChodHRwczovL3d3dy5vbmVwZXRyby5vcmcvc2VhcmNoP3E9XCJzaGFsZStvaWxcIiZwZWVyX3Jldmlld2VkPSZwdWJsaXNoZWRfYmV0d2Vlbj0mZnJvbV95ZWFyPSZ0b195ZWFyPSZzdGFydD0wJnJvd3M9MTUwMCZkY190eXBlPWNvbmZlcmVuY2UtcGFwZXIpXG4ifQ== -->
+<pre><code>closing unused connection 3 (https://www.onepetro.org/search?q=&quot;shale+oil&quot;&amp;peer_reviewed=&amp;published_between=&amp;from_year=&amp;to_year=&amp;start=0&amp;rows=1500&amp;dc_type=conference-paper)</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5NzAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTgwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code>my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          from_year = 1970, 
-                          to_year   = 1980, 
-                          how = &quot;all&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiNCBwdWJsaXNoZWRfYmV0d2Vlbj1vbiBcbjUgZnJvbV95ZWFyPTE5NzAgXG42IHRvX3llYXI9MTk4MCBcbiJ9 -->
-<pre><code>4 published_between=on 
-5 from_year=1970 
-6 to_year=1980 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfdXJsXG5gYGAifQ== -->
-<pre class="r"><code>my_url</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaHR0cHM6Ly93d3cub25lcGV0cm8ub3JnL3NlYXJjaD9xPVxcXCJuZXVyYWwrbmV0d29ya1xcXCImcGVlcl9yZXZpZXdlZD0mcHVibGlzaGVkX2JldHdlZW49b24mZnJvbV95ZWFyPTE5NzAmdG9feWVhcj0xOTgwXCJcbiJ9 -->
-<pre><code>[1] &quot;https://www.onepetro.org/search?q=\&quot;neural+network\&quot;&amp;peer_reviewed=&amp;published_between=on&amp;from_year=1970&amp;to_year=1980&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiNyBzdGFydD0wIFxuOCByb3dzPTEwMDAgXG4ifQ== -->
+<pre><code>7 start=0 
+8 rows=1000 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
 <pre class="r"><code>get_papers_count(my_url)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
-<pre><code>[1] 0</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE2MzU4XG4ifQ== -->
+<pre><code>[1] 16358</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyAxNjM1OVxub25lcGV0cm9fcGFnZV90b19kYXRhZnJhbWUobXlfdXJsKVxuYGBgIn0= -->
+<pre class="r"><code># 16359
+onepetro_page_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoibnVtYmVyIG9mIGNvbHVtbnMgb2YgcmVzdWx0IGlzIG5vdCBhIG11bHRpcGxlIG9mIHZlY3RvciBsZW5ndGggKGFyZyA0MClFcnJvciBpbiBvbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpIDogRGF0YWZyYW1lIHNpemVzIGRpZmZlcmVudFxuIn0= -->
+<pre><code>number of columns of result is not a multiple of vector length (arg 40)Error in onepetro_page_to_dataframe(my_url) : Dataframe sizes different</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBuZXVyYWwgbmV0d29yayBwYXBlcnMgZnJvbSAxOTcwIHRvIDE5ODAuIEV4YWN0IHBocmFzZVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5ODAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAxOTkwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code># neural network papers from 1970 to 1980. Exact phrase
-my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          from_year = 1980, 
-                          to_year   = 1990, 
-                          how = &quot;all&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiNCBwdWJsaXNoZWRfYmV0d2Vlbj1vbiBcbjUgZnJvbV95ZWFyPTE5ODAgXG42IHRvX3llYXI9MTk5MCBcbiJ9 -->
-<pre><code>4 published_between=on 
-5 from_year=1980 
-6 to_year=1990 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
-<pre class="r"><code>get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE3XG4ifQ== -->
-<pre><code>[1] 17</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBuZXVyYWwgbmV0d29yayBwYXBlcnMgZnJvbSAxOTcwIHRvIDE5ODAuIEV4YWN0IHBocmFzZVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code># neural network papers from 1970 to 1980. Exact phrase
-my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          from_year = 1990, 
-                          to_year   = 2000, 
-                          how = &quot;all&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiNCBwdWJsaXNoZWRfYmV0d2Vlbj1vbiBcbjUgZnJvbV95ZWFyPTE5OTAgXG42IHRvX3llYXI9MjAwMCBcbiJ9 -->
-<pre><code>4 published_between=on 
-5 from_year=1990 
-6 to_year=2000 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG5gYGAifQ== -->
-<pre class="r"><code>get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUxMFxuIn0= -->
-<pre><code>[1] 510</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbmBgYCJ9 -->
-<pre class="r"><code>source('./R/url.R')
-my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          from_year = 1990, 
-                          to_year   = 2000, 
-                          how = &quot;all&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiNCBwdWJsaXNoZWRfYmV0d2Vlbj1vbiBcbjUgZnJvbV95ZWFyPTE5OTAgXG42IHRvX3llYXI9MjAwMCBcbiJ9 -->
-<pre><code>4 published_between=on 
-5 from_year=1990 
-6 to_year=2000 </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub25lcGV0cm9fcGFnZV90b19kYXRhZnJhbWUobXlfdXJsKVxuYGBgIn0= -->
-<pre class="r"><code>onepetro_page_to_dataframe(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NiwibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFCc1ZXM1cvYk5oQlhuSSt0eHRvVjZJQU5lOWxodzRvVmtBM0ppeHNIM2NOYzIzR2RMWjNocEV2N1ZEQVNiUkdoU0kwaWsyaFArOHU3SFdYSlg3T3pCQ2d3QWJMbysvemRIWG5IVWZkdG8vcTI2amhPeGRuZTJYSXEyN2pjcWVEUGxyUGpQTERmRzhmWmZvS0xQWHdmNDFzdEdOOTFhU0RGbGVSR015bmdUY3JFQkY1VG93akhqNzZXNmpJdFJIOVlKc09wSnNHbEZmK2RjaGt3bmNHUTVZUkMvcWUyMG16TUFwYnJMRm1FUVVnRk1qTVkwVlN6MkhDU3UrOFFFYktRYURyejJWV004OXBMcHFITHlFVElsS1Z3em5TMEFhTzM2cWd0UWhpU2hDbzRwU3lOV1FBRG9hbEtGTlc1eTBMdlJja2RLaVlDbHFDSmpvd1RLUkNtTlVKNFpqM2ZscDVuUjB5bEdsNHFTaTdMVE55cWNMQ1FId3VLY3phaElxQXcrSGU2QlBTcFRDSUVFWlRxK3dOeFJWVnEweWJIcytqT3lSVWRTeFgvQjlZMURuUkVZVWkxa3B5YUdBbWhTYlhLVnJiTEZ6QjcvTVBENXpYL3VlL0RXbDZqNW5sK3ErUjlOZWQ1RGM5RDN2NSs3WGg0VnZLZkxPbzJtNjNhc0wzZWJMUG0rZnVOOVR5RTAyZ2VydWVoeXg4UHZNMVF2YzFoSExSYTYzays4aHJJVzA3Um83bk1hYThQZDZZT2UzZW4zc2Z1eDZFdXgvajFuTnVSWWt4VnZtL3pjM1puaVMvbkVzZlNLRHhpOTJGL0RBVC92OFJ5VmgvRHdtUDM4d1o2WXgwZFQ1VzNRWDRUdlhsUHY1dnNyTVZ6QzkxZmlmdFpMMDJwVUpSaFkzWmhKQytvMGk3OFFoUlBsY0d1OUVhd3ZOUHByQnhhcDBFVXN4Q0ZqazBzd2d5MThzNTFvVWpxWWdjbWZ6SmVpSDdmcFVMUXpBWDdaY2kxVGVlTUJwR1FYRTR5NklWTXk3SlVibHZSaUZqbm8zcTc3a0x2NWdhNzYxREowQVQ1Zk1KcFJZa0tJcXhrdmRENTVsYzZtVkNOT2llTTA5dzkweXlOb0U5U1NIaFFpUDM4eWhBeHdhaWtxYjNEcFF1djgvbGpCMDNFaUlRelk4ZkZMRklYWG1IL0RpTGp3aGxoMTZRY1ZOK2U0eFMwYWVyV2U0aXdIY3RBTGlLY0F6dnFHK25DTytaQ2g5cVJCemdXWUNpMUhiem85WWhSSHFZNHhFM0lMT3dPNWtPUlVBTG1Wa3B1WjhvSkU3TkIzQnJKcHlibUwzVGtRdCtJdkZJRGdiTmJHdzBoN21jN20vNHdGRUlEZlk0bGRPRklFZHpwWlkxUGdnNk9KYnd4MkVRRkVhRjRubTBBQ3ZIL3hqZzh6Uk5tNFMvZlhIWUZpUkhGZE1mc0ZjUXErdVgwUGQ0VVNFSDVOTEVINmowTGkvOTdLVGFObWZjZG5TV3pkWVlsTE5hZkVhTWpxZnlwcFdYSEQ1UzhycGZPSDlxNzFWOU8vbFJYRVFhY3BDWENrbGkxRnV0amhmcjQ3OE9LeWljeXNkVkNwWXE5bE8ydUtHK3BGY0xuUmxna1lRMDNoTGlzK1ZNVXlKNCtENHQxZFdHOU4zVlorYnN3dFZzbWhvb0oxclhFenNrRkxjL0tJNHc0RDdpZTRDMUlsNUVnTmExcnFVa3BWdzBrTHlsNWJNNkhmd0ErZXVucmdnb0FBQT09In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["title_data"],"name":[1],"type":["chr"],"align":["left"]},{"label":["paper_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["source"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["year"],"name":[5],"type":["chr"],"align":["left"]},{"label":["author1_data"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Deconvolution Using Neural Networks","2":"1996-1611","3":"SEG","4":"Conference Paper","5":"1996","6":"Essenreiter, Robert, Karlsruhe University"},{"1":"Neural Network Stacking Velocity Picking","2":"1992-0018","3":"SEG","4":"Conference Paper","5":"1992","6":"Schmidt, Jumndyr, Petrobras, Brazil"},{"1":"Artificial Neural Networks Identify Restimulation Candidates","2":"0200-0044-JPT","3":"SPE","4":"Journal Paper","5":"2000","6":"Denney, Dennis, JPT Technology Editor"},{"1":"Drill-Bit Diagnosis With Neural Networks","2":"19558-PA","3":"SPE","4":"Journal Paper","5":"1990","6":"Arehart, R.A., Exxon Production Research Co."},{"1":"Neural Networks And Paper Seismic Interpretation","2":"1995-0142","3":"SEG","4":"Conference Paper","5":"1995","6":"Leggett, Miles, British Gas plc"},{"1":"Seismic Principal Components Analysis Using Neural Networks","2":"1996-1259","3":"SEG","4":"Conference Paper","5":"1996","6":"Huang, Kou-Yuan, National Chiao Tung University, Hsinchu, Taiwan"},{"1":"First Break Picking Using Neural Networks","2":"1990-0370","3":"SEG","4":"Conference Paper","5":"1990","6":"Wagner, D.E., Amoco Production Co."},{"1":"Artificial Intelligence I Neural Networks In Geophysics","2":"1992-0001","3":"SEG","4":"Conference Paper","5":"1992","6":"Guo, Yi, Center for Potential Fields Studies, Colorado School of Mines"},{"1":"Inversion of Seismic Waveforms Using Neural Networks","2":"1992-0788","3":"SEG","4":"Conference Paper","5":"1992","6":"Ro&uml;th, Gunter, Institut de Physique du Globe, France"},{"1":"Neural Networks In the Petroleum Industry","2":"1991-0728","3":"SEG","4":"Conference Paper","5":"1991","6":"McCormack, Michael P., Arco Oil & Gas Co."}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwibmV1cmFsIG5ldHdvcmtcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9IFwiYWxsXCIpXG5nZXRfcGFwZXJzX2NvdW50KG15X3VybClcbmBgYCJ9 -->
-<pre class="r"><code>source('./R/url.R')
-my_url &lt;- make_search_url(query = &quot;neural network&quot;, 
-                          how = &quot;all&quot;)
-get_papers_count(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI5OThcbiJ9 -->
-<pre><code>[1] 2998</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub25lcGV0cm9fcGFnZV90b19kYXRhZnJhbWUobXlfdXJsKVxuYGBgIn0= -->
-<pre class="r"><code>onepetro_page_to_dataframe(my_url)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NiwibnJvdyI6OX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJyMVczVy9iTmhCWG5JL1Z4dG9WNklBT2V5SXdET2dBU1pDVnhMT0x2Yml4dDlyTEdzOU9tKzZwWUNUYUlreVJBa2tsZHA3MmwzYzd5cEl0YS9hQWJzTUUyS1R1N3ZlN0Q1SkhqWHZ2L2NiN2htVlpOZXZ3Nk1DcUhjTDBxQVovQjlhUlZUZmp3cklPbjhIa0JINVA0VmZQRmQvMFNDRDRuV0NwcG9LanQ0cnlHWHBEVW9rWkRQcGV5TG5LVFo5WHhLakxROVI5ZDVXclgyeXIwVVRqWUc3WTNoRW1BcXFYYUVRelFXNy9RMWRxT3FVQnpURGJ6SU9RY0ZBdTBaZ29UZU9VNFN5NkM4eERHbUpOaXBCZTlDUmx6SGxGTmVwUlBPTkNVWVZ1cUk3MnBOQWVTUkxTUUp1d2J2QUMvU2hrakV1Sjd3MHB4NS8zVFRncmhKaWlHOEpDQSt0UnBZWGNXOEFjM0JuRUNRTnlqYnBKSXNXaVJGUXBIVGFGVFl4eFpyR092cmZrT0taQjFmd0NNM29yMTJTL3BsanFCM1F0TVZkaEdoQ3BLbXYrSlZvL3pVNm41VFJielNiNnE4NzNQTi94ZkwrelF3YzQwSG5OZHFIN2FxUHpBQWk2c3pObk9Mb3U5TS9LMlBQenRqUHE3cUp0blhwK3kvbGxzZ00yY0x5MjQzL2YzZ1ZybnAxNnJSSmxDZFkrTzIwM004YnRJanpabUV6NlA2Ri9LUjMxLzRuMGFTbTd5ZFduY216bjgvVkdleUg0bEVqQ0E0SkdPQ0h5UDdSNHZyRVlpbFJ5MklXZm9QNGZJdmc3Z3UyQ2xZcS9PZ2U3NU9ZTTdMSGZLUWQ3YjQvOVRybnZOZmZ4dFBmSU8zdmtwNVg4dnVzclJiZ2tWQk5wbzdHNEpWTGI2R2NzbVpKcFJOQmJUdStnTjBCanpnR3RjUW9JeG16MFNsTE1iZlFheDRrUzNNbmxhQ0ttK2g1TGdpWkUzdEdBS0hTcFE3ZTRTQ1pCRk5NUVhBelRtSWRMOERraVdncG9UTW93NGdmS2N0TnZlNFJ6c3JTUkdTbG9UWis0SmtIRUJST3pKZXFIRk5wcGJteDNKWW13Q1gzc2RsMGI5UmNMYUhNakthQzFaUjBQcmdpQ1pSREJlcnRyVEVpV0pLYmcxeDBDWnBPcTZZK0RXeHlhOU43UUdZRkVjOHo0YXA3R1Fnc2IvWVpWR2xHRm9WaVV6MmtKYlNOSVVnaG1XUHA4UmprQkFtajNyK2tNcTRoR1ZBb1lZa0FPY1lKNXp2enlFZ0xwWWVHd2xGZGptUVEwMjZDbTQ1Y3FBSnFMaVBJaU5nL2Nwa3cvbUJwY3VtWmhHSFQ4VkdwSXY4K0pCRVN4SkRZYThNQ3QzUDdIY0cyUTRoWTR5WVVOVFRVakgrQTZMZHc4U3N3eCtVREQvUDFFd1FFTFNQNTJwSmZKZXI2RWt1Znp6M0dxSXlHYks2WnR4M1VwN3QzQytXUHpmZks3bFQzMWFvUUJ3NnFJc0JBMkRLTTdsWUNIdDQ4VnlHY2lXVjJPVnMxODJCeFh3QWV5SXZnaTVTYVMwSUZhOHJuakd3ZVpldlU4enVmMTB2eGs1YkwyUjA1MVhCU0daSXRmeE03d0xTbjI5aFBJT0V2WVRXQnI2Q0lUa0NwWEM0MEx1MFlnV0NISmNyTSsvZ2w1bDdrdnhna0FBQT09In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["title_data"],"name":[1],"type":["chr"],"align":["left"]},{"label":["paper_id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["source"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["year"],"name":[5],"type":["chr"],"align":["left"]},{"label":["author1_data"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Deconvolution Using Neural Networks","2":"1996-1611","3":"SEG","4":"Conference Paper","5":"1996","6":"Essenreiter, Robert, Karlsruhe University"},{"1":"Neural Networks And AVO","2":"2002-0229","3":"SEG","4":"Conference Paper","5":"2002","6":"Russell, Brian, Hampson-Russell Software Services Ltd."},{"1":"Neural Network Stacking Velocity Picking","2":"1992-0018","3":"SEG","4":"Conference Paper","5":"1992","6":"Schmidt, Jumndyr, Petrobras, Brazil"},{"1":"Artificial Neural Networks Identify Restimulation Candidates","2":"0200-0044-JPT","3":"SPE","4":"Journal Paper","5":"2000","6":"Denney, Dennis, JPT Technology Editor"},{"1":"Drill-Bit Diagnosis With Neural Networks","2":"19558-PA","3":"SPE","4":"Journal Paper","5":"1990","6":"Arehart, R.A., Exxon Production Research Co."},{"1":"Predicting Wax Formation Using Artificial Neural Network","2":"163026-MS","3":"SPE","4":"Conference Paper","5":"2012","6":"Adeyemi, B.J., University of Ibadan, Nigeria"},{"1":"Estimation of Welding Distortion Using Neural Network","2":"I-08-278","3":"ISOPE","4":"Conference Paper","5":"2008","6":"Okumoto, Yasuhisa, Kinki University, School of Engineering Higashihiroshima, Japan"},{"1":"Implicit Approximation of Neural Network and Applications","2":"114306-PA","3":"SPE","4":"Journal Paper","5":"2009","6":"Li, Dao-lun, University of Science and Technology of China"},{"1":"Dynamic Neural Network Calibration of Quartz Transducers","2":"84381-MS","3":"SPE","4":"Conference Paper","5":"2003","6":"Schultz, R.L., Halliburton Energy Services, Inc."}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[9]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgZmFpbHMgd2hlbiByb3dzPTE1MDBcbnNvdXJjZSgnLi9SL3VybC5SJylcblxubXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9IFwic2hhbGUgb2lsXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBob3cgPSBcImFsbFwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgZGNfdHlwZSA9IFwiY29uZmVyZW5jZS1wYXBlclwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICByb3dzID0gMTUwMClcblxuZ2V0X3BhcGVyc19jb3VudChteV91cmwpXG4jIDI1NzgsIGRjX3R5cGUgPSBOVUxMXG4jIDI1NzgsIGRjX3R5cGUgPSBcImNvbmZlcmVuY2UtcGFwZXJcIlxuIyAgMzgwLCBkY190eXBlID0gXCJqb3VybmFsLXBhcGVyXCJcbm9uZXBldHJvX3BhZ2VfdG9fZGF0YWZyYW1lKG15X3VybClcbmBgYCJ9 -->
+<pre class="r"><code>## fails when rows=1500
+source('./R/url.R')
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCiMgbmV1cmFsIG5ldHdvcmsgcGFwZXJzIGZyb20gMTk3MCB0byAxOTgwLiBFeGFjdCBwaHJhc2UNCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTcwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk4MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KbXlfdXJsDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCiMgMA0KYGBgDQoNCmBgYHtyfQ0KIyBuZXVyYWwgbmV0d29yayBwYXBlcnMgZnJvbSAxOTgwIHRvIDE5OTAuIEV4YWN0IHBocmFzZQ0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTgwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMTk5MCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KZ2V0X3BhcGVyc19jb3VudChteV91cmwpDQojIDE3DQpgYGANCg0KYGBge3J9DQojIG5ldXJhbCBuZXR3b3JrIHBhcGVycyBmcm9tIDE5OTAgdG8gMjAwMC4gRXhhY3QgcGhyYXNlDQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gIm5ldXJhbCBuZXR3b3JrIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGZyb21feWVhciA9IDE5OTAsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICB0b195ZWFyICAgPSAyMDAwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQpnZXRfcGFwZXJzX2NvdW50KG15X3VybCkNCiMgNTEwDQpgYGANCg0KDQpgYGB7cn0NCiMgT25lcGV0cm8gcGFnZSB0byBkYXRhZnJhbWUNCiMgbmV1cmFsIG5ldHdvcmsgcGFwZXJzIGZyb20gMTk5MCB0byAyMDAwLiBFeGFjdCBwaHJhc2UNCnNvdXJjZSgnLi9SL3VybC5SJykNCg0KbXlfdXJsIDwtIG1ha2Vfc2VhcmNoX3VybChxdWVyeSA9ICJuZXVyYWwgbmV0d29yayIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tX3llYXIgPSAxOTkwLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgdG9feWVhciAgID0gMjAwMCwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KDQpvbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpDQpgYGANCg0KYGBge3J9DQojIE9uZXBldHJvIHBhZ2UgdG8gZGF0YWZyYW1lDQojIG5ldXJhbCBuZXR3b3JrIHBhcGVycy4gRXhhY3QgcGhyYXNlDQpzb3VyY2UoJy4vUi91cmwuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAibmV1cmFsIG5ldHdvcmsiLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gImFsbCIpDQoNCmdldF9wYXBlcnNfY291bnQobXlfdXJsKQ0KIyAyOTk4DQpvbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpDQpgYGANCg0KDQoNCg0K</div>
+my_url &lt;- make_search_url(query = &quot;shale oil&quot;, 
+                          how = &quot;all&quot;, 
+                          dc_type = &quot;conference-paper&quot;,
+                          rows = 1500)
+
+get_papers_count(my_url)
+# 2578, dc_type = NULL
+# 2578, dc_type = &quot;conference-paper&quot;
+#  380, dc_type = &quot;journal-paper&quot;
+onepetro_page_to_dataframe(my_url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyfQ0KIyBmYWlscyBkdWUgdG8gZGlmZmVyZW50IHNpemUgb2YgZGF0YWZyYW1lcw0KIyBudW1iZXIgb2YgY29sdW1ucyBvZiByZXN1bHQgaXMgbm90IGEgbXVsdGlwbGUgb2YgdmVjdG9yIGxlbmd0aCAoYXJnIDQwKQ0KIyBFcnJvciBpbiBvbmVwZXRyb19wYWdlX3RvX2RhdGFmcmFtZShteV91cmwpIDogRGF0YWZyYW1lIHNpemVzIGRpZmZlcmVudA0KIyANCiMgc3BlY2lmeSBkb2N1bWVudCB0eXBlID0gImNvbmZlcmVuY2UtcGFwZXIiLCByb3dzID0gMTAwMA0Kc291cmNlKCcuL1IvdXJsLlInKQ0KDQpteV91cmwgPC0gbWFrZV9zZWFyY2hfdXJsKHF1ZXJ5ID0gInVuY29udmVudGlvbmFsIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgcm93cyA9IDEwMDApDQoNCmdldF9wYXBlcnNfY291bnQobXlfdXJsKQ0KIyAxNjM1OQ0Kb25lcGV0cm9fcGFnZV90b19kYXRhZnJhbWUobXlfdXJsKQ0KYGBgDQoNCg0KDQpgYGB7cn0NCiMjIGZhaWxzIHdoZW4gcm93cz0xNTAwDQpzb3VyY2UoJy4vUi91cmwuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAic2hhbGUgb2lsIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgZGNfdHlwZSA9ICJjb25mZXJlbmNlLXBhcGVyIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgcm93cyA9IDE1MDApDQoNCmdldF9wYXBlcnNfY291bnQobXlfdXJsKQ0KIyAyNTc4LCBkY190eXBlID0gTlVMTA0KIyAyNTc4LCBkY190eXBlID0gImNvbmZlcmVuY2UtcGFwZXIiDQojICAzODAsIGRjX3R5cGUgPSAiam91cm5hbC1wYXBlciINCm9uZXBldHJvX3BhZ2VfdG9fZGF0YWZyYW1lKG15X3VybCkNCmBgYA==</div>
 
 
 

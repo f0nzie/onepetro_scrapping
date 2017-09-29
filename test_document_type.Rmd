@@ -4,8 +4,21 @@ output: html_notebook
 ---
 
 
+```{r}
+# nanodarcy. exact phrase.
+source('./R/url.R')
+
+my_url <- make_search_url(query = "nanodarcy", 
+                          how = "all")
+
+get_papers_count(my_url)
+# 496
+onepetro_page_to_dataframe(my_url)
+```
+
 
 ```{r}
+# specify document type = "conference-paper", rows = 1000
 source('./R/url.R')
 
 my_url <- make_search_url(query = "neural network", 
@@ -14,12 +27,15 @@ my_url <- make_search_url(query = "neural network",
                           rows = 1000)
 
 get_papers_count(my_url)
+# 2661
 onepetro_page_to_dataframe(my_url)
 ```
 
 
 
 ```{r}
+# specify document type = "journal-paper", rows = 1000
+# 
 source('./R/url.R')
 
 my_url <- make_search_url(query = "neural network", 
@@ -28,6 +44,7 @@ my_url <- make_search_url(query = "neural network",
                           rows = 1000)
 
 get_papers_count(my_url)
+# 303
 onepetro_page_to_dataframe(my_url)
 ```
 
@@ -35,11 +52,13 @@ onepetro_page_to_dataframe(my_url)
 
 
 ```{r}
+# specify document type = "conference-paper", rows = 1000
 source('./R/url.R')
 
 my_url <- make_search_url(query = "smartwell", 
                           how = "all",
-                          dc_type = "conference-paper")
+                          dc_type = "conference-paper",
+                          rows = 1000)
 
 get_papers_count(my_url)
 # 52
@@ -62,23 +81,14 @@ onepetro_page_to_dataframe(my_url)
 
 
 
-```{r}
-source('./R/url.R')
-
-my_url <- make_search_url(query = "unconventional")
-
-get_papers_count(my_url)
-# 16359
-onepetro_page_to_dataframe(my_url)
-```
-
-
 
 ```{r}
 source('./R/url.R')
 
 my_url <- make_search_url(query = "shale oil", 
-                          how = "all", dc_type = "conference-paper")
+                          how = "all", 
+                          dc_type = "conference-paper",
+                          rows = 1000)
 
 get_papers_count(my_url)
 # 2578, dc_type = NULL
@@ -86,3 +96,7 @@ get_papers_count(my_url)
 #  380, dc_type = "journal-paper"
 onepetro_page_to_dataframe(my_url)
 ```
+
+
+
+

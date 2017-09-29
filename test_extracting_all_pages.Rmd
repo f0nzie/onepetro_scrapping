@@ -30,3 +30,51 @@ onepetro_allpages_to_dataframe(my_url)
 
 
 
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "algorithm", 
+                          how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "digital", 
+                          how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "digital oilfield", 
+                          how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "intelligent completions", 
+                          how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
+
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "oil shale", 
+                          how = "all")
+
+onepetro_allpages_to_dataframe(my_url)
+```
