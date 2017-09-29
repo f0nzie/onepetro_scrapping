@@ -3,6 +3,9 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+
+
+
 ## Pulling x1000 pages
 Onepetro starts the countng of records at 0 not 1.
 

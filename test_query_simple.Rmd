@@ -4,8 +4,30 @@ output: html_notebook
 ---
 
 ```{r}
+# test for smartwell query
+source('./R/url.R')
+my_url <- make_search_url(query = "smartwell")
+my_url
+smartwell <- send_url(my_url)
+# xml2::write_html(webpage, file = "smartwell.html")
+
+results <- smartwell %>%
+  html_nodes("h2") %>%
+  html_text()
+
+results <- results[1]
+results
+# results2 <- gsub("results.", "", results)
+# results2 <- gsub("Search results: Your search for smartwell has returned", "", results2)
+# results2
+as.numeric(gsub("[^\\d]+", "", results, perl=TRUE))
+```
+
+
+
+```{r}
 # test create_url for smartwell query
-source('D:/Dropbox/R/web_scraping/R/url.R')
+source('./R/url.R')
 my_url <- create_url(query = "smartwell")
 my_url
 smartwell <- send_url(my_url)

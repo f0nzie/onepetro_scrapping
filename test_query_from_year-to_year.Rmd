@@ -1,0 +1,123 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# Using regex to extract the number of papers when the result string has more info
+source('./R/url.R')
+
+my_url <- make_search_url(query = "neural network", 
+                          from_year = 1990, 
+                          to_year   = 1999, 
+                          how = "all")
+
+result <- send_url(my_url)
+
+search_result <- result %>%
+  html_nodes("h2") %>%
+  html_text()
+
+search_result
+
+# extract the numeric part of the results
+pattern <- "[\\d,]+(?= results.)"    # a number, including comma, before " results."
+m <- regexpr(pattern, search_result[1], perl = TRUE)       # matched
+as.numeric(gsub(",", "", regmatches(search_result[1], m))) # remove comma first
+```
+
+
+```{r}
+source('./R/url.R')
+
+my_url <- make_search_url(query = "shale oil", 
+                          how = "all")
+
+result <- send_url(my_url)
+
+search_result <- result %>%
+  html_nodes("h2") %>%
+  html_text()
+
+search_result
+
+# extract the numeric part of the results
+pattern <- "[\\d,]+(?= results.)"    # a number, including comma, before " results."
+m <- regexpr(pattern, search_result[1], perl = TRUE)       # matched
+as.numeric(gsub(",", "", regmatches(search_result[1], m))) # remove comma first
+```
+
+```{r}
+result %>%
+    html_nodes(".facets-form") %>%
+    html_nodes("div") # %>% html_nodes("filter-label")
+    
+```
+
+```{r}
+result %>%
+    html_nodes(".facets-form div") %>%
+    html_text("Publisher:") 
+    
+    
+```
+
+```{r}
+result %>%
+    html_nodes(".facets-form div.filter-label")
+    
+    
+```
+
+```{r}
+result %>%
+    html_nodes("All types") 
+
+```
+
+```{r}
+result %>%
+    html_attrs("All types") 
+```
+
+```{r}
+result %>%
+    html_nodes("div")
+```
+
+```{r}
+result %>%
+    html_nodes("div") %>%
+    .[[64]]
+
+```
+
+
+```{r}
+result %>%
+    html_nodes("div") %>%
+    html_nodes("option") %>%
+    html_attr("conference-paper")
+
+```
+
+
+```{r}
+div_res <- result %>%
+    html_nodes("div")
+
+lapply(div_res, identity)
+```
+
+
+```{r}
+result %>%
+    html_nodes("dc_publisher_facet")
+```
+
+
+```{r}
+result %>%
+    xml_structure()
+```
+

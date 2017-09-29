@@ -1,0 +1,26 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+
+movie <- read_html("http://www.imdb.com/title/tt1490017/")
+
+cast <- html_nodes(movie, "#titleCast span.itemprop")
+html_text(cast)
+
+```
+
+
+```{r}
+html_name(cast)
+
+```
+
+```{r}
+html_attrs(cast)
+html_attr(cast, "class")
+```
+
