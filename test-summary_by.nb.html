@@ -174,16 +174,21 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuc291cmNlKCcuL1Ivc3VtbWFyeS5SJylcbm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSBcInNoYWxlIGdhc1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbnJlc3VsdCA8LSBzZW5kX3VybChteV91cmwpXG5wdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KVxuc3VtbWFyeV9ieV9kb2N0eXBlKHB1YnNfcmF3KVxuYGBgIn0= -->
-<pre class="r"><code>source('./R/url.R')
-source('./R/summary.R')
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuYGBgIn0= -->
+<pre class="r"><code>source('./R/url.R')</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB4bWwyXG4ifQ== -->
+<pre><code>Loading required package: xml2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1Ivc3VtbWFyeS5SJylcbm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSBcInNoYWxlIGdhc1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbnJlc3VsdCA8LSBzZW5kX3VybChteV91cmwpXG5wdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KVxuc3VtbWFyeV9ieV9kb2N0eXBlKHB1YnNfcmF3KVxuYGBgIn0= -->
+<pre class="r"><code>source('./R/summary.R')
 my_url &lt;- make_search_url(query = &quot;shale gas&quot;, 
                           how = &quot;all&quot;)
 result &lt;- send_url(my_url)
 pubs_raw &lt;- publication_result(result)
 summary_by_doctype(pubs_raw)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJTMDdETUJDZE9KK3FFU21WMkxMZ0FzMENMaEFKSkJBU0FuWFZIVExKbEVhWWNlUTRCWFljZ2VOd0hFNVNzQk83b3JGa3o4d2J6N3g1OXZKcWRaNnVVZ0JnRUVZQnNOQzRFVE5IQUJGTXJYMEhDRS82Q3dCenN4T1htRjlLV3FOQ0t2R3M0UTBxaDArdWtWQng0Y0xzVm5hS3VEaTRFOTloVlhNZjNPdk5QblAwb0xCRjBselhra3c4czR6Rjl4YnNLazVoc0Y4L2d5MWNmT0hzemVmZ0hFcUlpYjlpNjhabm5xaVNwZjVvOE5FbS9hd2UyM0xSNGFqTFZNbTMzSGZLYkNkSGxvenBTc0ZiVCtmQnRPS2E1MnRseVFCMm81S0piS3hlVThUc1U4ZWo0a0NOZ09PTzdDVFZvdHgwOUxLdzh0TStQYXpNK2NrL253MlU3TmUxaWwyckJPbTVKdjhDc2VCUDZMOXVaaFQzZ3ZORzFhUzlFb08ydVpaNi84VnBLWVZIZW0ydyt3UGJEMFhMV0FJQUFBPT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJYVTdETUF4MjA1OXBGUjJUZU9XQkM2d1NjSUZLSUlHUUVJaW52YUhRZXF3aU9GV2FEbmpqQ0J5SDQzQ1NRZEltRTJ1a3hQYm4ySisvNU9GeWVaWXVVd0JnRUVZQnNOQzRFVE5IQUJGTXJYMEhDSS82Q3dCenN4T1htRjlJV3FGQ0t2R2s0UTBxaDArdWtGQng0Y0xzUm5hS3VOaTdFOTlpVlhNZjNPbjFMbk53cjdCRjBselhra3c4czR6Rjl3YnNLbzVoc0Y4L2d5MWNmTzdzOWVmZzdFdUlpYjlpNjhabm5xaVNwZjVvOE5FbS9hd2UyM0RSNGFqTFZNbTMzSGZLYkNkSGxvenBTc0ZiVCtmQnRPS2E1eXRseVFDMm81S0piS3hlVThUc1U4ZWo0a0NOZ01PTzdDVFZvbHgzOUxJNHRRUjllbGlaODVOL1Boc28yYTlyRmJ0V0NkSnpUZjRGWXNHZjBIL2R6Q2p1QmVlTnFrbDdKUVp0Y3kzMTdvdlRVZ3FQOU5wZyt3ZWZTL2tOV0FJQUFBPT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["doctype_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["doctype_value"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Conference paper","2":"6262"},{"1":"General","2":"7"},{"1":"Journal paper","2":"1080"},{"1":"Media","2":"32"},{"1":"Other","2":"19"},{"1":"Presentation","2":"49"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
@@ -193,8 +198,28 @@ summary_by_doctype(pubs_raw)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL1IvdXJsLlInKVxuc291cmNlKCcuL1Ivc3VtbWFyeS5SJylcbm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSBcInNoYWxlIGdhc1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgaG93ID0gXCJhbGxcIilcbnJlc3VsdCA8LSBzZW5kX3VybChteV91cmwpXG5wdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KVxuc3VtbWFyeV9ieV9wdWJsaXNoZXIocHVic19yYXcpXG5gYGAifQ== -->
+<pre class="r"><code>source('./R/url.R')
+source('./R/summary.R')
+my_url &lt;- make_search_url(query = &quot;shale gas&quot;, 
+                          how = &quot;all&quot;)
+result &lt;- send_url(my_url)
+pubs_raw &lt;- publication_result(result)
+summary_by_publisher(pubs_raw)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MjB9LCJyZGYiOiJINHNJQUFBQUFBQUFCbjFVelc0VE1SQjJ0dzIwa1ZvUTVJQUVxc3lmNkNVUkt1TENBUktGcUNycVQ1UlMwaHM0dTdPSlZjZGUyZDYydVhIZ2tYZ0FIb1ZINEFrSzl1NXNzdG1pcnBTTVBmUE5OL09OZHozNGVMWmJQNnNUUWdLeXVyWkNnbFczWEF2YzN3cFpJeHZlWGhHeStqQURFSExmL1JvWWVOS1pndVloazdRUFZpc0I2WlR1UzJPNVRTMGc1dmtjTTFEaE9UMkVjTUlrRHczdEdLTkN6aXhYRXFFdjV0QVRGd0U3b3lxbUp5ejJxNTRjY3dtZ0RXSmZkWmtlS1VrUG1XUmptSUswOUxPamxrcW84WXgybFl4Qmd3eUxMcHI3MG9LV1dUVW1TdTNlbHJTem5GUTBGU3RkMFlMNHQvL0hPeEhIY1d3bVNnTmxNcUo5SlppK0llakJVYWZibzBzTUdIbDVWREQySkdqWGFLbm5BelpTbWxtbFp3aCtPaTkxQ0JGM1pKcEpjQk85SVc1N0RyeHRCSTFqTGx4VFVXcXNudEZQS3RXTHZoNHZwbGlTMm5VSEVqR0VQT3Z6QklUVFNVLzROQldaamx3akdFdjN0RXFUNHV4TEZMMnJSSGhWSHJ3SEtwbk1EQSs1c2NXb3RrdllSUS9WZ2I2dW9oWTgyVEVNUVlqbWdSclRqcE0wVzdDWHhaektDUFFsYy8yV3BvUzQxcWtNbGJ4d2IxNStPQU13Ymp3aG1Gc0grbWlvdEloS2JUdkUyRTNEdU5pV0gzaDduV1JQMnlhNUpiamZRVHY5bHRzdmVhVDlEdjI3YU4rZ2ZZOTIrR3VaNXhqdHZNN3YzUDY4eksyZ21mM3dCK00vOG4xNy96c3lMTjBOTmNtbVlQQmVDTkM1bnFTanJ6NkErN3JmWHpDUmV1UlMrb1pXbDYyQ1l0TlRZSlZHdFU0b21DbnFGTTU2eEN4cnhkcFhJdVM2a25KWEpmNW9YRkxnTDY5YUpYbEZWeHozVXVrN2lacmhKSlhuVFQvUGVoYk9uMDFjTjBycklDOFovRVdxR2xMZGdleGxMSG9YYkFURlY3UGxGR2VDVzRubTBoWktuTmUwckxMenI2c2VLbEY0TW0zaytoLzNrVnZmcWdVQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pub_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pub_values"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"American Petroleum Institute","2":"3"},{"1":"American Rock Mechanics Association","2":"327"},{"1":"American Society of Safety Engineers","2":"2"},{"1":"Carbon Management Technology Conference","2":"12"},{"1":"International Petroleum Technology Conference","2":"235"},{"1":"International Society for Rock Mechanics","2":"89"},{"1":"International Society of Offshore and Polar Engineers","2":"26"},{"1":"NACE International","2":"18"},{"1":"National Energy Technology Laboratory","2":"19"},{"1":"Offshore Mediterranean Conference","2":"30"},{"1":"Offshore Technology Conference","2":"95"},{"1":"Oil Industry Journal","2":"2"},{"1":"Petroleum Society of Canada","2":"62"},{"1":"Pipeline Simulation Interest Group","2":"3"},{"1":"Society of Exploration Geophysicists","2":"334"},{"1":"Society of Petroleum Engineers","2":"5239"},{"1":"Society of Petrophysicists and Well-Log Analysts","2":"225"},{"1":"Society of Underwater Technology","2":"1"},{"1":"Unconventional Resources Technology Conference","2":"644"},{"1":"World Petroleum Congress","2":"51"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[20]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCnNvdXJjZSgnLi9SL3N1bW1hcnkuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAic2hhbGUgZ2FzIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KDQpyZXN1bHQgPC0gc2VuZF91cmwobXlfdXJsKQ0KDQpwdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KQ0KDQpzdW1tYXJ5X2J5X2RvY3R5cGUocHVic19yYXcpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCnNvdXJjZSgnLi9SL3N1bW1hcnkuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAic2hhbGUgZ2FzIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KDQpyZXN1bHQgPC0gc2VuZF91cmwobXlfdXJsKQ0KDQpwdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KQ0KDQpzdW1tYXJ5X2J5X2RvY3R5cGUocHVic19yYXcpDQpgYGANCg0KDQpgYGB7cn0NCnNvdXJjZSgnLi9SL3VybC5SJykNCnNvdXJjZSgnLi9SL3N1bW1hcnkuUicpDQoNCm15X3VybCA8LSBtYWtlX3NlYXJjaF91cmwocXVlcnkgPSAic2hhbGUgZ2FzIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAgIGhvdyA9ICJhbGwiKQ0KDQpyZXN1bHQgPC0gc2VuZF91cmwobXlfdXJsKQ0KDQpwdWJzX3JhdyA8LSBwdWJsaWNhdGlvbl9yZXN1bHQocmVzdWx0KQ0KDQpzdW1tYXJ5X2J5X3B1Ymxpc2hlcihwdWJzX3JhdykNCmBgYA0KDQo=</div>
 
 
 

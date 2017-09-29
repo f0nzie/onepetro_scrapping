@@ -17,3 +17,18 @@ pubs_raw <- publication_result(result)
 summary_by_doctype(pubs_raw)
 ```
 
+
+```{r}
+source('./R/url.R')
+source('./R/summary.R')
+
+my_url <- make_search_url(query = "shale gas", 
+                          how = "all")
+
+result <- send_url(my_url)
+
+pubs_raw <- publication_result(result)
+
+summary_by_publisher(pubs_raw)
+```
+
