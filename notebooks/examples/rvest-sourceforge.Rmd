@@ -1,0 +1,25 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+url<-"http://sourceforge.net/"
+
+categories<-url %>%
+  read_html() %>%
+  html_nodes(".titled h2") %>%
+  html_text()
+
+categories
+```
+
+```{r}
+projects <-url %>%
+  read_html() %>%
+  html_nodes(".project-info a") %>%
+  html_text()
+
+projects
+```
+

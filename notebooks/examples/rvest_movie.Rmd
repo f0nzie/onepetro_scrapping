@@ -9,8 +9,12 @@ library(rvest)
 movie <- read_html("http://www.imdb.com/title/tt1490017/")
 
 cast <- html_nodes(movie, "#titleCast span.itemprop")
-html_text(cast)
+cast
 
+```
+
+```{r}
+html_text(cast)
 ```
 
 
@@ -21,6 +25,11 @@ html_name(cast)
 
 ```{r}
 html_attrs(cast)
+```
+
+
+```{r}
 html_attr(cast, "class")
 ```
+
 

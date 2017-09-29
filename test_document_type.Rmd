@@ -82,21 +82,5 @@ onepetro_page_to_dataframe(my_url)
 
 
 
-```{r}
-source('./R/url.R')
-
-my_url <- make_search_url(query = "shale oil", 
-                          how = "all", 
-                          dc_type = "conference-paper",
-                          rows = 1000)
-
-get_papers_count(my_url)
-# 2578, dc_type = NULL
-# 2578, dc_type = "conference-paper"
-#  380, dc_type = "journal-paper"
-onepetro_page_to_dataframe(my_url)
-```
-
-
 
 

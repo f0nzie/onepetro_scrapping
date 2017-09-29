@@ -75,8 +75,80 @@ get_dc_publisher_facet <- function(aList) {
     aList[2:(ix_stop-1)]
 }
 
-get_dc_publisher_facet(pub_doc)
+publishers_raw <- get_dc_publisher_facet(pub_doc)
+publishers_raw
 ```
+
+```{r}
+x <- publishers
+pattern <- "(?<=\\{).+(?=\\})"
+
+## Match data from regexpr()
+m <- regexpr(pattern, x, perl = TRUE)
+regmatches(x, m)
+```
+
+```{r}
+extract_num_papers <- function(x) {
+    pattern <- "(?<=\\{).+(?=\\})"
+    m <- regexpr(pattern, x, perl = TRUE)
+    as.numeric(gsub(",", "" , regmatches(x, m)))
+}
+
+extract_num_papers(publishers_raw)
+```
+
+
+```{r}
+x <- publishers_raw
+pattern <- "(\\s[{\\d}].+)"
+gsub(pattern, "", x, perl = TRUE)
+
+```
+
+
+```{r}
+extract_publishers <- function(x) {
+    pattern <- "(\\s[{\\d}].+)"
+    gsub(pattern, "", x, perl = TRUE)
+}
+
+extract_publishers(publishers_raw)
+```
+
+
+```{r}
+publishers.as.dataframe <- function(x) {
+    pub_vector <- get_dc_publisher_facet(x)
+    pub_values <- extract_num_papers(pub_vector)
+    pub_name   <- extract_publishers(pub_vector)
+    data.frame(pub_name, pub_values, stringsAsFactors = FALSE)
+}
+
+publishers.as.dataframe(pub_doc)
+```
+
+
+```{r}
+doctype.as.dataframe <- function(x) {
+    doctype_vector <- get_dctype(x)
+    doctype_value <- extract_num_papers(doctype_vector)
+    doctype_name   <- extract_publishers(doctype_vector)
+    data.frame(doctype_name, doctype_value, stringsAsFactors = FALSE)
+}
+
+doctype.as.dataframe(pub_doc)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 ```{r}
