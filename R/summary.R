@@ -18,31 +18,31 @@ publication_result_left <- function(result) {
 
 summary_by_publisher <- function(x) {
     pub_vector <- get_dc_publisher(x)
-    pub_values <- extract_num_papers(pub_vector)
-    pub_name   <- extract_publishers(pub_vector)
-    data.frame(pub_name, pub_values, stringsAsFactors = FALSE)
+    value <- extract_num_papers(pub_vector)
+    name   <- extract_publishers(pub_vector)
+    data.frame(name, value, stringsAsFactors = FALSE)
 }
 
 summary_by_doctype <- function(x) {
     doctype_vector <- get_dctype(x)
-    doctype_value <- extract_num_papers(doctype_vector)
-    doctype_name   <- extract_publishers(doctype_vector)
-    data.frame(doctype_name, doctype_value, stringsAsFactors = FALSE)
+    value <- extract_num_papers(doctype_vector)
+    name   <- extract_publishers(doctype_vector)
+    data.frame(name, value, stringsAsFactors = FALSE)
 }
 
 
 summary_by_dates <- function(x) {
     pub_vector <- get_dc_issued_year(x)
-    pub_values <- extract_num_papers(pub_vector)
-    pub_name   <- extract_publishers(pub_vector)
-    data.frame(pub_name, pub_values, stringsAsFactors = FALSE)
+    value <- extract_num_papers(pub_vector)
+    name   <- extract_publishers(pub_vector)
+    data.frame(name, value, stringsAsFactors = FALSE)
 }
 
 summary_by_publications <- function(x) {
     pub_vector <- get_s2_parent_title(x)
-    pub_values <- extract_num_papers(pub_vector)
-    pub_name   <- extract_publishers(pub_vector)
-    data.frame(pub_name, pub_values, stringsAsFactors = FALSE)
+    value <- extract_num_papers(pub_vector)
+    name   <- extract_publishers(pub_vector)
+    data.frame(name, value, stringsAsFactors = FALSE)
 }
 
 

@@ -343,6 +343,14 @@ result %>%
 
 
 ```{r}
+pub_doc <- result %>%
+html_nodes(".facet-unit-left") %>%
+    html_nodes("option") %>%
+    html_text()
+pub_doc
+```
+
+```{r}
 div_res <- result %>%
     html_nodes("div")
 
