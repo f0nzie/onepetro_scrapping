@@ -7,6 +7,29 @@ output: html_notebook
 source('./R/url.R')
 source('./R/summary.R')
 
+my_url <- make_search_url(query = "shale oil", 
+                          how = "all")
+
+result <- read_html(my_url)
+pubs_raw <- publication_result_right(result)
+
+summary_by_doctype(pubs_raw)
+summary_by_publisher(pubs_raw)
+
+```
+
+```{r}
+
+raw_left <- publication_result_left(result)
+summary_by_dates(raw_left)
+summary_by_publications(raw_left)
+```
+
+
+```{r}
+source('./R/url.R')
+source('./R/summary.R')
+
 my_url <- make_search_url(query = "shale gas", 
                           how = "all")
 
@@ -15,6 +38,7 @@ result <- send_url(my_url)
 pubs_raw <- publication_result(result)
 
 summary_by_doctype(pubs_raw)
+
 ```
 
 
